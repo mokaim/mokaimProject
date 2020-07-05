@@ -70,7 +70,7 @@
         
         <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
           <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_4.jpg" alt="Image" class="img-fluid">
+            <img src="https://mokaimblob.blob.core.windows.net/mokaim-container/starry-sky-1081939_1920.jpg" alt="Image" class="img-fluid">
             <div class="photo-text-more">
               <div class="photo-text-more">
               <h3 class="heading">Photos Title Here</h3>
