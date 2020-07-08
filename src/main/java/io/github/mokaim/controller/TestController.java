@@ -1,47 +1,33 @@
 package io.github.mokaim.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import io.github.mokaim.mapper.TestMapperImpl;
 
 @Controller
 public class TestController {
 
+	@Autowired
+	TestMapperImpl testMapperImpl;
 	
-	@RequestMapping("/")
-	public String test() {
-		return "test";
+	@GetMapping("/testlist")
+	public String getList(Model model) {
+		
+		
+		model.addAttribute("list",testMapperImpl.testList());
+		
+		return "testList";
 	}
 	
-	@RequestMapping("/blog")
-	public String blog() {
-		return "blog";
+	@GetMapping("/testwrite")
+	public String showWrite() {
+		return "testWrite";
 	}
-	
-	
-	@RequestMapping("/bio")
-	public String bio() {
-		return "bio";
-	}
-	
-	@RequestMapping("/contact")
-	public String contect() {
-		return "contact";
-	}
-	
-	@RequestMapping("/index")
-	public String index() {
-		return "index";
-	}
-	
-	@RequestMapping("/photos")
-	public String photos() {
-		return "photos";
-	}
-	
-	@RequestMapping("/single")
-	public String single() {
-		return "single";
-	}
+
 	
 	
 }

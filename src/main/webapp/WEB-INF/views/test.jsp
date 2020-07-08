@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1>Test Complete!!</h1>
+<h1>Junit Test Complete!!</h1>
 
 </body>
 </html>

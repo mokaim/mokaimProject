@@ -11,5 +11,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             COUNT(*)
         FROM test
     </select>
+    
+    <insert id="insertTest" parameterType="io.github.mokaim.domain.TestDTO">
+    	INSERT INTO test
+    	VALUES(#{id},#{name})
+    		
+    </insert>
+    
+    <select id="selectListTest" resultType="io.github.mokaim.domain.TestDTO">
+    	SELECT * FROM test
+    </select>
    
 </mapper>
