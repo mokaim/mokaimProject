@@ -27,6 +27,11 @@ public class TestController {
 	public String showWrite() {
 		return "testWrite";
 	}
+	
+	@GetMapping("/ajax")
+	public String ajax() {
+		return "ajax";
+	}
 
 	
 	
