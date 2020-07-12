@@ -1,5 +1,6 @@
 package io.github.mokaim.domain;
 
+import java.io.File;
 import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
 
@@ -14,7 +15,10 @@ import com.microsoft.azure.storage.blob.CloudBlobClient;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
 
+import lombok.extern.slf4j.Slf4j;
 
+
+@Slf4j
 @Component
 public class AzureBlobConnection {
 
@@ -24,6 +28,7 @@ public class AzureBlobConnection {
 	CloudBlobClient blobClient = null;
 	CloudBlobContainer container=null;
 	
+	/*
 	public void connectionBlob() {
 		
 		
@@ -49,20 +54,44 @@ public class AzureBlobConnection {
 			e.printStackTrace();
 		}
 		
-		System.out.println("Creating container: " + container.getName());
+		log.info("Creating container: " + container.getName());
+		
+		
+				
 		try {
 			
 			container.createIfNotExists(BlobContainerPublicAccessType.CONTAINER, new BlobRequestOptions(), new OperationContext());
+			
+		
 		
 		} catch (StorageException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		
+		CloudBlockBlob blob = null;
+		
+		try {
+			blob = container.getBlockBlobReference(file.getName());
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (StorageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		blob.getProperties().setContentType("image/jpeg"); 
+		//https://stackoverflow.com/questions/10040403/set-content-type-of-media-files-stored-on-blob 
+		//파일 타입을 저 형식으로 불러옴
+		
+		
+		
 		
 		
 		
 	}
+	*/
 	
 	
 	
