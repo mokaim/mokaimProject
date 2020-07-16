@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,242 +70,31 @@
     <div class="container-fluid photos">
       <div class="row align-items-stretch">
         
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
-          <a href="single.html" class="d-block photo-item">
-            <img src="https://mokaimblob.blob.core.windows.net/mokaim-container/starry-sky-1081939_1920.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_5.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_1.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_2.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_3.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_6.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_7.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_8.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_9.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
+        
+        <c:forEach var="testImageDTO" items="${list}">
+        	<p></p>
 
 
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
+		 <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
           <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_10.jpg" alt="Image" class="img-fluid">
+            <img src="${testImageDTO._img_url}" alt="Image" class="img-fluid">
             <div class="photo-text-more">
               <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
+              <h3 class="heading"><c:out value="${testImageDTO._img_name}" /></h3>
+              <span class="meta"><c:out value="${testImageDTO._img_id}" /></span>
             </div>
             </div>
           </a>
         </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_1.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            	 </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_2.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
+        
 
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_3.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_4.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_5.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
+        
+        </c:forEach>
+        
+        
 
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_6.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_7.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_8.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_9.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_4.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${pageContext.request.contextPath}/static/images/img_5.jpg" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">Photos Title Here</h3>
-              <span class="meta">42 Photos</span>
-            </div>
-            </div>
-          </a>
-        </div>
+        
+        
 
         
 

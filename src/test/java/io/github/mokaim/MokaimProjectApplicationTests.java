@@ -15,8 +15,7 @@ class MokaimProjectApplicationTests {
 	
 	@Test
 	void contextLoads() {
-		int a = test.testCount();
-		System.out.println(a);
+
 	}
 
 }

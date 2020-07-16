@@ -1,5 +1,7 @@
 package io.github.mokaim.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,15 +16,7 @@ public class TestController {
 	@Autowired
 	TestMapperImpl testMapperImpl;
 	
-	@GetMapping("/testlist")
-	public String getList(Model model) {
-		
-		
-		model.addAttribute("list",testMapperImpl.testList());
-		
-		return "testList";
-	}
-	
+
 	@GetMapping("/testwrite")
 	public String showWrite() {
 		return "testWrite";
@@ -31,6 +25,15 @@ public class TestController {
 	@GetMapping("/ajax")
 	public String ajax() {
 		return "ajax";
+	}
+	
+	@GetMapping("/list")
+	public String showList(Model model) {
+		
+		model.addAttribute("list", testMapperImpl.list());
+		
+		
+		return "photos";
 	}
 
 	

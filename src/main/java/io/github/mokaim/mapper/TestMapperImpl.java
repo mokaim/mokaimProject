@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import io.github.mokaim.domain.TestDTO;
+import io.github.mokaim.domain.TestImageDTO;
 
 @Service
 public class TestMapperImpl implements TestMapper{
@@ -17,27 +18,38 @@ public class TestMapperImpl implements TestMapper{
 	
 	public static final String NAME_SPACE = "io.github.mokaim.mapper";
 
-	@Override
-	public int testCount() {
-		// TODO Auto-generated method stub	
-		return sqlSession.selectOne(NAME_SPACE + ".selectTest");
-	}
-	
+
 
 	@Override
-	public void testInsert(TestDTO testDTO) {
+	public void insert_imgTest(TestImageDTO testImageDTO) {
 		// TODO Auto-generated method stub
 		
-		sqlSession.insert(NAME_SPACE + ".insertTest",testDTO);
+		sqlSession.insert(NAME_SPACE + ".insert_imgTest", testImageDTO);
+		
 	}
+
 
 
 	@Override
-	public List<TestDTO> testList() {
+	public int count_imgTest() {
 		// TODO Auto-generated method stub
-
-		return sqlSession.selectList(NAME_SPACE + ".selectListTest");
+		
+		return sqlSession.selectOne(NAME_SPACE +".count_imgTest");
 	}
+
+
+
+	@Override
+	public List<TestImageDTO> list() {
+		// TODO Auto-generated method stub
+		
+		
+		
+		
+		return sqlSession.selectList(NAME_SPACE + ".select_AllList");
+	}
+	
+	
 	
 	
 	

@@ -5,21 +5,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
  
 <mapper namespace="io.github.mokaim.mapper">
- 
-    <select id="selectTest" resultType="int">
-        SELECT
-            COUNT(*)
-        FROM test
+
+
+	<select id="count_imgTest" resultType="int">
+    	SELECT COUNT(*) FROM test_image
     </select>
+
     
-    <insert id="insertTest" parameterType="io.github.mokaim.domain.TestDTO">
-    	INSERT INTO test
-    	VALUES(#{id},#{name})
-    		
+    <insert id="insert_imgTest" parameterType="io.github.mokaim.domain.TestImageDTO">
+    	INSERT INTO test_image VALUES(#{_img_id},#{_img_name},#{_img_url})
     </insert>
     
-    <select id="selectListTest" resultType="io.github.mokaim.domain.TestDTO">
-    	SELECT * FROM test
+    
+    <select id="select_AllList" resultType="io.github.mokaim.domain.TestImageDTO">
+    	SELECT * FROM test_image
     </select>
+    
+    
+
    
 </mapper>

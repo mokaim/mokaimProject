@@ -86,7 +86,12 @@
 		
 		
 		
+		<!-- 오류문제 의존성 https://stackoverflow.com/questions/60010007/basic-spring-boot-app-not-working-showing-failed-to-refresh-live-data-from-pro -->
 		
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+   			 <artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		
 
 		<dependency>

@@ -3,6 +3,7 @@ package io.github.mokaim.controller;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,6 +28,7 @@ import com.microsoft.azure.storage.file.FileInputStream;
 
 import io.github.mokaim.domain.AzureBlobConnection;
 import io.github.mokaim.domain.TestDTO;
+import io.github.mokaim.domain.TestImageDTO;
 import io.github.mokaim.mapper.TestMapperImpl;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,7 +44,7 @@ public class TestController_02 {
 	AzureBlobConnection azureBlob;
 	
 	
-	public static final String storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=mokaimblob;AccountKey=C7pttqSC3el0UPA2zl2UbPHkEnCT7ft0J5+c3FeMcIflUxnvoOQqgJaQxFmNJ38HL2CR7gvZ9+dttJwJxt2uFw==;EndpointSuffix=core.windows.net";
+	public static final String storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=mokaim;AccountKey=8YblAa2df/wFk+mqBzMJlTHio0ioNUCaolHo4XPYfVWADY+G+kYfw+Vz4736YlXXexGVLUK3WDvKdr3CDUje+A==;EndpointSuffix=core.windows.net";
 	
 	@PostMapping("/testwrite")
 	public String input(HttpServletRequest request) {
@@ -51,11 +53,9 @@ public class TestController_02 {
 		int a = Integer.parseInt(a_str);
 		String b = request.getParameter("name");
 		
-		TestDTO testDTO = new TestDTO();
-		testDTO.setId(a);
-		testDTO.setName(b);
+
 		
-		testMapperImple.testInsert(testDTO);
+
 		
 		return "complete!";
 	}
@@ -102,8 +102,10 @@ public class TestController_02 {
 		CloudBlobClient blobClient = null;
 		CloudBlobContainer container=null;
 		CloudBlockBlob blob = null;
-		
+		TestImageDTO testImageDTO = new TestImageDTO();
 		InputStream is = null;
+		
+		String uuid = UUID.randomUUID().toString();
 
 		
 		try {    
@@ -126,17 +128,25 @@ public class TestController_02 {
 				
 				is = new DataInputStream(multipartFile.getInputStream());
 				long length = multipartFile.getSize();
-				blob = container.getBlockBlobReference(multipartFile.getOriginalFilename());
+				blob = container.getBlockBlobReference(uuid + multipartFile.getOriginalFilename());
 				blob.getProperties().setContentType("image/jpeg");  //https://stackoverflow.com/questions/10040403/set-content-type-of-media-files-stored-on-blob 
 				//블록의 기본 옥텟설정을 바꾼다.
 				blob.upload(is, length);  //인풋스트림으로 파일을 업로드 시킨다.
 				
 				
-				uploadFileName = multipartFile.getOriginalFilename();
-				
-				//uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
-				
+				uploadFileName = uuid + multipartFile.getOriginalFilename();
 				log.info("only file name : " + uploadFileName);
+				
+				testImageDTO.set_img_id(testMapperImple.count_imgTest() + 1);
+				testImageDTO.set_img_name(uploadFileName);
+				testImageDTO.set_img_url("https://mokaim.blob.core.windows.net/mokaim-container/"+uploadFileName);
+				
+				
+				log.info("img_id : " + testImageDTO.get_img_id());
+				log.info("img_name : " + testImageDTO.get_img_name());
+				log.info("img_url : " + testImageDTO.get_img_url());
+				
+				testMapperImple.insert_imgTest(testImageDTO);
 				
 
 				//https://stackoverflow.com/questions/35860578/azure-storage-through-java-mvc-web-site 
@@ -146,8 +156,8 @@ public class TestController_02 {
 			}
 			//Listing contents of container
 			for (ListBlobItem blobItem : container.listBlobs()) {
-			System.out.println("URI of blob is: " + blobItem.getUri());
-		}
+				System.out.println("URI of blob is: " + blobItem.getUri());
+			}
 
 		// Download blob. In most cases, you would have to retrieve the reference
 		// to cloudBlockBlob here. However, we created that reference earlier, and 
