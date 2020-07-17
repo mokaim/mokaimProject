@@ -69,10 +69,10 @@
   <main class="main-content">
     <div class="container-fluid photos">
       <div class="row align-items-stretch">
-        
-        
+
+
         <c:forEach var="testImageDTO" items="${list}">
-        	<p></p>
+        	
 
 
 		 <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
