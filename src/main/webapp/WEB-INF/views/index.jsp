@@ -53,9 +53,7 @@
 
     <div class="main-menu">
       <ul class="js-clone-nav">
-        <li><a href="index.html">Home</a></li>
-        <li class="active"><a href="photos.html">Photos</a></li>
-        <li><a href="bio.html">Bio</a></li>
+        <li class="active"><a href="index.html">Home</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -80,12 +78,13 @@
             <img src="${testImageDTO._img_url}" alt="Image" class="img-fluid">
             <div class="photo-text-more">
               <div class="photo-text-more">
-              <h3 class="heading"><c:out value="${testImageDTO._img_name}" /></h3>
-              <span class="meta"><c:out value="${testImageDTO._img_id}" /></span>
-            </div>
+             	 <h3 class="heading"><c:out value="${testImageDTO._img_name}" /></h3>
+             	 <span class="meta"><c:out value="${testImageDTO._img_id}" /></span>
+              </div>
             </div>
           </a>
         </div>
+        
         
 
         
