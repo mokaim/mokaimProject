@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,13 +33,16 @@ import com.microsoft.azure.storage.file.FileInputStream;
 import io.github.mokaim.azure.AzureBlob;
 import io.github.mokaim.domain.TestDTO;
 import io.github.mokaim.domain.TestImageDTO;
+import io.github.mokaim.domain.WriteDTO;
 import io.github.mokaim.mapper.TestMapperImpl;
+import io.github.mokaim.mapper.WriteMapperImpl;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
 @RestController
 public class TestController_02 {
+
 
 	
 	@Autowired
@@ -98,10 +104,25 @@ public class TestController_02 {
 	
 	
 	@PostMapping("/uploadTest")
-	public String ajaxTestAzure(MultipartFile[] uploadFile) {
+	public String ajaxTestAzure(@RequestParam("subject") String subject,
+			@RequestParam("story") String story ,
+			MultipartFile[] uploadFile) {
+		
 		log.info("update ajax post-=======================");
 		
-		boolean validate = azureBlob.azureImageUpload(uploadFile);
+		log.info("subject : " + subject);
+		log.info("story : " + story);
+		log.info("image Name : " +  uploadFile[0].getOriginalFilename());
+		
+		WriteDTO writeDTO = new WriteDTO();
+		
+		writeDTO.setBno(2);
+		writeDTO.setTitle(subject);
+		writeDTO.setStory(story);
+		
+	
+
+		boolean validate = azureBlob.azureImageUpload(uploadFile, writeDTO);
 		
 		if(validate == true) {
 			return "complete!!";
@@ -111,6 +132,39 @@ public class TestController_02 {
 	
 		
 	}
+	
+	@GetMapping("/jsonTest")
+	public List<TestDTO> testJson(){
+		
+		
+		List<TestDTO> list = new ArrayList<TestDTO>();
+		
+		for(int i=0; i<10; i++) {
+			TestDTO testDTO = new TestDTO();
+			list.add(testDTO);
+		}
+		
+		return list;	
+		
+	}
+	
+	
+	@PostMapping("/formdataAction")
+	public String ajaxFormDataTest(@RequestParam("test1")String test,  @RequestParam("") MultipartFile uploadFile) {
+		log.info("update ajax post-=======================");
+		
+		//log.info("subject : " + subject.getSubject());
+		
+		log.info("test file name : " + uploadFile.getOriginalFilename());
+		log.info("test input name : " + test);
+		
+		
+		return "dd";
+	
+		
+	}
+	
+	
 	
 	
 	

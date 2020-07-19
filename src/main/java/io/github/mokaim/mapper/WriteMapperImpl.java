@@ -2,12 +2,13 @@ package io.github.mokaim.mapper;
 
 import java.util.List;
 
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import io.github.mokaim.domain.ImageDTO;
-import io.github.mokaim.domain.TestImageDTO;
+import io.github.mokaim.domain.WriteDTO;
 
 @Repository
 public class WriteMapperImpl implements WriteMapper {
@@ -34,6 +35,15 @@ public class WriteMapperImpl implements WriteMapper {
 	public List<ImageDTO> select_List() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAME_SPACE + ".select_AllList");
+	}
+
+	@Override
+	public void insert_write_TB(WriteDTO writeDTO) {
+		System.out.println(writeDTO.getBno());
+		System.out.println(writeDTO.getTitle());
+		System.out.println(writeDTO.getStory());
+		sqlSession.insert(NAME_SPACE + ".insert_writeTest", writeDTO);
+		
 	}
 
 }

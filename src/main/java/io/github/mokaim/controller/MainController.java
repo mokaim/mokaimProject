@@ -25,4 +25,9 @@ public class MainController {
 		
 		return "index";
 	}
+	
+	@GetMapping("/write")
+	public String write() {
+		return "write";
+	}
 }

@@ -5,10 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ImageDTO {
-
-	private int _img_id;
-	private String _img_name;
-	private String _img_url;
+public class WriteDTO {
 	private int bno;
+	private String title;
+	private String story;
 }

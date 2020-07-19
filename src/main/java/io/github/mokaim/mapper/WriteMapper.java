@@ -2,8 +2,9 @@ package io.github.mokaim.mapper;
 
 import java.util.List;
 
+
 import io.github.mokaim.domain.ImageDTO;
-import io.github.mokaim.domain.TestImageDTO;
+import io.github.mokaim.domain.WriteDTO;
 
 public interface WriteMapper {
 	
@@ -14,5 +15,7 @@ public interface WriteMapper {
 	
 	
 	public List<ImageDTO> select_List();
+	
+	public void insert_write_TB(WriteDTO writeDTO);
 	
 }

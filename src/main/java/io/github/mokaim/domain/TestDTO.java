@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 public class TestDTO {
 
-	private int id;
-	private String name;
+	private String subject;
+	
+	
 
 }

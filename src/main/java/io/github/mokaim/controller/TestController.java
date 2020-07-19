@@ -36,7 +36,13 @@ public class TestController {
 		
 		return "photos";
 	}
+	
+	@GetMapping("/formdata")
+	public String testFormdata(Model model) {
+		
 
+		return "formdata";
+	}
 	
 	
 }

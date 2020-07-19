@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Shutter &mdash; Colorlib Website Template</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fonts/icomoon/style.css">
 
@@ -29,9 +26,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
     
     
+    <script src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
+
   </head>
   <body>
-  
+
 
   <div class="site-wrap">
 
@@ -48,14 +47,14 @@
     <div class="site-logo">
       <a href="index.html">Shutter</a>
     </div>
-    
+
     <div class="d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
     <div class="main-menu">
       <ul class="js-clone-nav">
-        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="blog.html">Blog</a></li>
-        <li><a href="/write">Write</a></li>
+        <li class="active"><a href="contact.html">Write</a></li>
       </ul>
       <ul class="social js-clone-nav">
         <li><a href="#"><span class="icon-facebook"></span></a></li>
@@ -63,39 +62,63 @@
         <li><a href="#"><span class="icon-instagram"></span></a></li>
       </ul>
     </div>
-  </header> 
+  </header>
   <main class="main-content">
     <div class="container-fluid photos">
-      <div class="row align-items-stretch">
+      <div class="row justify-content-center">
+
+        <div class="col-md-6 pt-4"  data-aos="fade-up">
+          <h2 class="text-white mb-4">스토리 집필하기!</h2>
+
+          <div class="row">
+            <div class="col-md-12">
+              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur <a href="#">adipisicing</a> elit. Ipsa explicabo quasi cum, laudantium neque at veniam itaque atque <a href="#">necessitatibus</a> temporibus! Beatae sit soluta magni neque autem, suscipit dolorem, quo alias.</p>
 
 
-        <c:forEach var="testImageDTO" items="${list}">
-        	
+              <div class="row">
+                <div class="col-md-12">
+
+                  <form>
+
+                    <div class="row form-group">
+
+                      <div class="col-md-12">
+                        <label class="text-white" for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" name="subject">
+                      </div>
+                    </div>
+
+                    <div class="row form-group mb-5">
+                      <div class="col-md-12">
+                        <label class="text-white" for="message">Story</label>
+                        <textarea name="story" id="message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..."></textarea>
+                      </div>
+                    </div>
 
 
-		 <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
-          <a href="single.html" class="d-block photo-item">
-            <img src="${testImageDTO._img_url}" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
+                    <div class="row form-group mb-5">
+                      <div class="col-md-12">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="fileInput" name="uploadFile">
+                          <label class="custom-file-label" for="fileInput">사진을 업로드 해주세요.</label>
+                        </div>
+                      </div>
+                    </div>
 
-              <h3 class="heading"><c:out value="${testImageDTO._img_name}" /></h3>
-              <span class="meta"><c:out value="${testImageDTO._img_id}" /></span>
+                    <div class="row form-group">
+                      <div class="col-md-12">
+                        <button type="button" class="btn btn-outline-light btn-md btn-block" id="toUpload">Send Message</button>
+                      </div>
+                    </div>
 
+
+                  </form>
+                </div>
+
+              </div>
             </div>
-          </a>
+          </div>
         </div>
-        
-        
-
-        
-        </c:forEach>
-        
-        
-
-        
-        
-
-        
 
       </div>
 
@@ -113,7 +136,89 @@
 
 </div> <!-- .site-wrap -->
 
-  <script src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
+
+	
+      <script type="text/javascript">
+
+        $(document).ready(function(){
+        	
+        	
+            
+          	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|7z)$");
+          	var maxSize = 5782934;
+          	
+          	function checkExtension(fileName, fileSize){
+          		if(fileSize >= maxSize){
+                 	alert("파일 용량이 너무큽니다..");
+          			return false;
+          		}
+          		
+          		if(regex.test(fileName)){
+          			alert("해당 종류의 파일은 업로드 할 수 없습니다.. 이미지만 올려주세요..;;");
+          			return false;
+          		}
+          		
+          		return true;
+          	}
+          
+        	
+        	
+        	
+          $("#toUpload").on("click", function(){
+            var formData = new FormData();
+            
+            
+            var inputFile = $("input[name='uploadFile']");
+            var subject = $("input[name='subject']").val();
+            var story = $("textarea[name='story']").val();
+            
+            var files = inputFile[0].files;
+
+            console.log(files);
+
+            
+            formData.append("subject",subject);
+            formData.append("story",story);
+            
+            for(var i = 0; i < files.length; i++){
+            	
+              if(!checkExtension(files[i].name, files[i].size)){
+ 
+            	  return false;
+              }
+              
+              formData.append("uploadFile", files[i]);
+            }
+            
+            
+            console.log(formData);
+
+            $.ajax({
+              url : '/uploadTest',
+              processData : false,
+              contentType : false,
+              data : formData,
+              type : 'POST',
+              success : function(result){
+                alert("업로드 완료!!");
+                window.location.href="/";
+              }
+
+            });
+
+          });
+        });
+
+      </script>
+
+
+	
+
+
+
+
+
+
   <script src="${pageContext.request.contextPath}/static/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="${pageContext.request.contextPath}/static/js/jquery-ui.js"></script>
   <script src="${pageContext.request.contextPath}/static/js/popper.min.js"></script>
@@ -128,6 +233,6 @@
   <script src="${pageContext.request.contextPath}/static/js/jquery.fancybox.min.js"></script>
 
   <script src="${pageContext.request.contextPath}/static/js/main.js"></script>
-    
+
   </body>
 </html>

@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     
     <insert id="insert_imgTest" parameterType="io.github.mokaim.domain.TestImageDTO">
-    	INSERT INTO test_image VALUES(#{_img_id},#{_img_name},#{_img_url})
+    	INSERT INTO test_image VALUES(#{_img_id},#{_img_name},#{_img_url},#{bno})
     </insert>
     
     
@@ -22,6 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     
-
+	<insert id="insert_writeTest" parameterType="io.github.mokaim.domain.WriteDTO">
+		INSERT INTO test_write VALUES(#{bno}, #{title}, #{story})
+	</insert>
    
 </mapper>
