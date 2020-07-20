@@ -3,6 +3,7 @@
  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,7 +29,6 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
     
-    
   </head>
   <body>
   
@@ -46,7 +46,7 @@
 
   <header class="header-bar d-flex d-lg-block align-items-center" data-aos="fade-left">
     <div class="site-logo">
-      <a href="index.html">Shutter</a>
+      <a href="index.html">MokaimStory</a>
     </div>
     
     <div class="d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
@@ -66,36 +66,21 @@
   </header> 
   <main class="main-content">
     <div class="container-fluid photos">
-      <div class="row align-items-stretch">
+      <div class="row justify-content-center">
+        
+        <div class="col-md-6 pt-4">
+          <figure class="mb-5" data-aos="fade-up">
+            <img src="${view._img_url}" alt="Image" class="img-fluid">
+          </figure>
 
+          <h2 class="text-white mb-4" data-aos="fade-up">${view.title}</h2>
 
-        <c:forEach var="testImageDTO" items="${list}">
-        	
-
-
-		 <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
-          <a href="/view/${testImageDTO.bno}" class="d-block photo-item">
-            <img src="${testImageDTO._img_url}" alt="Image" class="img-fluid">
-            <div class="photo-text-more">
-
-              <h3 class="heading"><c:out value="${testImageDTO.title}" /></h3>
-              <span class="meta"><c:out value="${testImageDTO.story}" /></span>
-
+          <div class="row" data-aos="fade-up">
+            <div class="col-md-12">
+				${view.story}
             </div>
-          </a>
+          </div>
         </div>
-        
-        
-
-        
-        </c:forEach>
-        
-        
-
-        
-        
-
-        
 
       </div>
 

@@ -36,7 +36,7 @@ public class AzureBlob {
 	public static final String storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=mokaim;AccountKey=8YblAa2df/wFk+mqBzMJlTHio0ioNUCaolHo4XPYfVWADY+G+kYfw+Vz4736YlXXexGVLUK3WDvKdr3CDUje+A==;EndpointSuffix=core.windows.net";
 	
 
-	public boolean azureImageUpload(MultipartFile[] uploadFile, WriteDTO writeDTO) {
+	public boolean azureImageUpload(MultipartFile[] uploadFile) {
 		log.info("update ajax post-=======================");
 		
 		CloudStorageAccount storageAccount;
@@ -81,10 +81,10 @@ public class AzureBlob {
 				imageDTO.set_img_id(writeMapperImple.count_img_TB() + 1);
 				imageDTO.set_img_name(uploadFileName);
 				imageDTO.set_img_url("https://mokaim.blob.core.windows.net/mokaim-container/"+uploadFileName);
-				imageDTO.setBno(2);
+				imageDTO.setBno(writeMapperImple.count_write_TB());
 				
 				
-				writeMapperImple.insert_write_TB(writeDTO);
+				
 				
 				log.info("img_id : " + imageDTO.get_img_id());
 				log.info("img_name : " + imageDTO.get_img_name());

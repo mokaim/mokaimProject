@@ -48,6 +48,14 @@ public class TestMapperImpl implements TestMapper{
 		
 		return sqlSession.selectList(NAME_SPACE + ".select_AllList");
 	}
+
+
+
+	@Override
+	public TestImageDTO view(int bno) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAME_SPACE + ".select_viewTest",bno);
+	}
 	
 	
 	

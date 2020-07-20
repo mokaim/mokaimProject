@@ -18,12 +18,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     
     <select id="select_AllList" resultType="io.github.mokaim.domain.TestImageDTO">
-    	SELECT * FROM test_image
+    	SELECT write.bno,
+			   write.title,
+			   write.story,
+			   img._img_id,
+			   img._img_name,
+			   img._img_url FROM test_write write FULL OUTER JOIN test_image img ON write.bno = img.bno ORDER BY write.bno DESC;
     </select>
     
+    
+    
+    
+    <select id="count_writeTest" resultType="int">
+    	SELECT COUNT(*) FROM test_write
+    </select>
     
 	<insert id="insert_writeTest" parameterType="io.github.mokaim.domain.WriteDTO">
 		INSERT INTO test_write VALUES(#{bno}, #{title}, #{story})
 	</insert>
+	
+	
+	<select id="select_viewTest" resultType="io.github.mokaim.domain.TestImageDTO" parameterType="int">
+			
+		SELECT write.bno,
+			   write.title,
+			   write.story,
+			   img._img_id,
+			   img._img_name,
+			   img._img_url FROM test_write write FULL OUTER JOIN test_image img ON write.bno = img.bno WHERE write.bno = #{bno}
+    
+	</select>
    
 </mapper>

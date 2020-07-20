@@ -11,4 +11,5 @@ public class ImageDTO {
 	private String _img_name;
 	private String _img_url;
 	private int bno;
+	
 }

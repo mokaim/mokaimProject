@@ -46,4 +46,10 @@ public class WriteMapperImpl implements WriteMapper {
 		
 	}
 
+	@Override
+	public int count_write_TB() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAME_SPACE + ".count_writeTest");
+	}
+
 }

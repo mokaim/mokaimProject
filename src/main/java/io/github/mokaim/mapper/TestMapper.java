@@ -7,6 +7,7 @@ import io.github.mokaim.domain.TestDTO;
 import io.github.mokaim.domain.TestImageDTO;
 
 
+
 public interface TestMapper {
 
 	public int count_imgTest();
@@ -16,5 +17,7 @@ public interface TestMapper {
 	
 	
 	public List<TestImageDTO> list();
+	
+	public TestImageDTO view(int bno);
 	
 }

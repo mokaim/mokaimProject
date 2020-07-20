@@ -18,4 +18,8 @@ public interface WriteMapper {
 	
 	public void insert_write_TB(WriteDTO writeDTO);
 	
+	public int count_write_TB();
+	
+	
+	
 }

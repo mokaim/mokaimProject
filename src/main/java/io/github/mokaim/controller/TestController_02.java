@@ -43,7 +43,8 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class TestController_02 {
 
-
+	@Autowired
+	WriteMapperImpl writeMapperImpl;
 	
 	@Autowired
 	TestMapperImpl testMapperImple;
@@ -116,13 +117,15 @@ public class TestController_02 {
 		
 		WriteDTO writeDTO = new WriteDTO();
 		
-		writeDTO.setBno(2);
+		 
+		
+		writeDTO.setBno(writeMapperImpl.count_write_TB() + 1);
 		writeDTO.setTitle(subject);
 		writeDTO.setStory(story);
 		
-	
+		writeMapperImpl.insert_write_TB(writeDTO);
 
-		boolean validate = azureBlob.azureImageUpload(uploadFile, writeDTO);
+		boolean validate = azureBlob.azureImageUpload(uploadFile);
 		
 		if(validate == true) {
 			return "complete!!";

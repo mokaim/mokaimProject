@@ -7,7 +7,13 @@ import lombok.Setter;
 @Setter
 public class TestImageDTO {
 
+	private int bno;
+	private String title;
+	private String story;
+	
+	
 	private int _img_id;
 	private String _img_name;
 	private String _img_url;
+	
 }
