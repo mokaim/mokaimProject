@@ -24,7 +24,7 @@ import io.github.mokaim.domain.TestImageDTO;
 import io.github.mokaim.domain.WriteDTO;
 import io.github.mokaim.mapper.WriteMapperImpl;
 import lombok.extern.slf4j.Slf4j;
-
+//Azure
 @Slf4j
 @Component
 public class AzureBlob {
