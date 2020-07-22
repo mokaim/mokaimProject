@@ -1,0 +1,22 @@
+.comments .comment  {
+    padding: 5px 10px;
+    background: #82959e;
+}
+
+ul li {
+    list-style: none;
+}
+
+.reply {
+    background-color : cadetblue;
+}
+
+.comments .usr-img img{
+    width : 50px;
+    height: 50px;
+}
+
+hr .style2 {
+    border-top: 3px double #ffffff;
+}
+

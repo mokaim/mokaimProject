@@ -17,7 +17,6 @@ public class MainController {
 	WriteMapperImpl writeMapperImpl;
 	
 	
-	
 	@GetMapping("/")
 	public String list(Model model) {
 		
@@ -25,9 +24,5 @@ public class MainController {
 		
 		return "index";
 	}
-	
-	@GetMapping("/write")
-	public String write() {
-		return "write";
-	}
+
 }
