@@ -11,13 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	SELECT COUNT(*) FROM test_image
     </select>
 
+
     
-    <insert id="insert_imgTest" parameterType="io.github.mokaim.domain.TestImageDTO">
-    	INSERT INTO test_image VALUES(#{_img_id},#{_img_name},#{_img_url},#{bno})
-    </insert>
-    
-    
-    <select id="select_AllList" resultType="io.github.mokaim.domain.TestImageDTO">
+    <select id="select_AllList" resultType="io.github.mokaim.domain.ViewInfoDTO">
     	SELECT write.bno,
 			   write.title,
 			   write.story,
@@ -29,16 +25,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     
     
-    <select id="count_writeTest" resultType="int">
+    <select id="count_Write" resultType="int">
     	SELECT COUNT(*) FROM test_write
     </select>
     
-	<insert id="insert_writeTest" parameterType="io.github.mokaim.domain.WriteDTO">
+	<insert id="insert_Write" parameterType="io.github.mokaim.domain.WriteDTO">
 		INSERT INTO test_write VALUES(#{bno}, #{title}, #{story})
 	</insert>
 	
 	
-	<select id="select_viewTest" resultType="io.github.mokaim.domain.TestImageDTO" parameterType="int">
+	<select id="select_viewTest" resultType="io.github.mokaim.domain.ViewInfoDTO" parameterType="int">
 			
 		SELECT write.bno,
 			   write.title,

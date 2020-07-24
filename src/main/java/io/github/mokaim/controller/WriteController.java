@@ -1,13 +1,13 @@
 package io.github.mokaim.controller;
 
+import io.github.mokaim.domain.ViewInfoDTO;
+import io.github.mokaim.mapper.ViewMapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import io.github.mokaim.domain.TestImageDTO;
-import io.github.mokaim.mapper.TestMapperImpl;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -15,12 +15,13 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class WriteController {
 	
-	
+
 	@Autowired
-	TestMapperImpl testMapperImpl;
+	ViewMapperImpl viewMapperImpl;
 	
 	@GetMapping("/write")
 	public String write() {
+
 		return "write";
 	}
 	
@@ -30,8 +31,8 @@ public class WriteController {
 		
 		log.info("test view bno : "  + bno);
 		
-		TestImageDTO testImageDTO =  testMapperImpl.view(bno);
-		model.addAttribute("view",testImageDTO);
+		ViewInfoDTO viewInfoDTO =  viewMapperImpl.view(bno);
+		model.addAttribute("view",viewInfoDTO);
 
 		return "view";
 	}

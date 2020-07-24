@@ -194,7 +194,7 @@
             console.log(formData);
 
             $.ajax({
-              url : '/uploadTest',
+              url : '/write',
               processData : false,
               contentType : false,
               data : formData,

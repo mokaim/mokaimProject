@@ -66,3 +66,128 @@ create table reply(
 create sequence s1 start with 1 minvalue 1 maxvalue 1000 increment by 1 cache 1000 nocycle engine=Aria;
 
 insert into comments (usr_id,comments_content,reg_date) values("admin","test","2020-07-22");
+
+
+
+
+==========================================================================================
+
+
+
+
+
+
+
+
+CREATE SEQUENCE usr_seq
+AS int
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1
+MAXVALUE 2147483647
+CACHE
+GO
+
+CREATE SEQUENCE post_seq
+AS int
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1
+MAXVALUE 2147483647
+CACHE
+GO
+
+CREATE SEQUENCE img_seq
+AS int
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1
+MAXVALUE 2147483647
+CACHE
+GO
+
+
+CREATE SEQUENCE comments_seq
+AS int
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1
+MAXVALUE 2147483647
+CACHE
+GO
+
+
+
+CREATE SEQUENCE reply_seq
+AS int
+START WITH 1
+INCREMENT BY 1
+MINVALUE 1
+MAXVALUE 2147483647
+CACHE
+GO
+
+
+
+
+create table usr(
+	_usr_num int primary key,
+	_usr_email varchar(128) unique,
+	_usr_pw varchar(128)
+)
+
+
+create table post(
+	_post_num int primary key,
+	_post_title varchar(128),
+	_post_content varchar(1024),
+	_post_usr varchar(128),
+
+	foreign key (_post_usr) references usr(_usr_email)
+)
+
+
+create table img(
+	_img_num int primary key,
+	_img_name varchar(512),
+	_img_location varchar(512),
+	_img_source int,
+
+	foreign key (_img_source) references post(_post_num)
+)
+
+INSERT usr(_usr_num, _usr_email, _usr_pw)
+    VALUES (NEXT VALUE FOR usr_seq, 'admin', 'temp123');
+
+
+select * from usr;
+
+
+
+
+create table comments(
+	comments_id int primary key,
+	comments_content varchar(128),
+	_usr_email varchar(128),
+	_post_num int,
+	reg_date date,
+
+	foreign key (_usr_email) references usr(_usr_email) on delete cascade on update cascade,
+	foreign key (_post_num) references post(_post_num) on delete cascade on update cascade,
+);
+
+
+create table reply(
+	_usr_email varchar(128),
+	comments_id int,
+	_post_num int,
+	reply_content varchar(128),
+	reply_date date
+
+	foreign key (comments_id) references comments(comments_id) on delete cascade on update cascade,
+	foreign key (_usr_email) references comments(comments_id) on delete cascade on update cascade,
+	foreign key (comments_id) references comments(comments_id) on delete cascade on update cascade,
+);
+
+drop table reply;
+

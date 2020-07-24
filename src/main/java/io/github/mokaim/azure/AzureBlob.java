@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.microsoft.azure.storage.CloudStorageAccount;
@@ -20,11 +19,11 @@ import com.microsoft.azure.storage.blob.CloudBlockBlob;
 import com.microsoft.azure.storage.blob.ListBlobItem;
 
 import io.github.mokaim.domain.ImageDTO;
-import io.github.mokaim.domain.TestImageDTO;
-import io.github.mokaim.domain.WriteDTO;
 import io.github.mokaim.mapper.WriteMapperImpl;
 import lombok.extern.slf4j.Slf4j;
 //Azure
+
+
 @Slf4j
 @Component
 public class AzureBlob {

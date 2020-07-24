@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import io.github.mokaim.domain.ImageDTO;
 import io.github.mokaim.domain.WriteDTO;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public class WriteMapperImpl implements WriteMapper {
 
 	
@@ -42,14 +42,14 @@ public class WriteMapperImpl implements WriteMapper {
 		System.out.println(writeDTO.getBno());
 		System.out.println(writeDTO.getTitle());
 		System.out.println(writeDTO.getStory());
-		sqlSession.insert(NAME_SPACE + ".insert_writeTest", writeDTO);
+		sqlSession.insert(NAME_SPACE + ".insert_Write", writeDTO);
 		
 	}
 
 	@Override
 	public int count_write_TB() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAME_SPACE + ".count_writeTest");
+		return sqlSession.selectOne(NAME_SPACE + ".count_Write");
 	}
 
 }

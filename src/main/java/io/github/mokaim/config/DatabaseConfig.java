@@ -1,6 +1,5 @@
 package io.github.mokaim.config;
 
-import java.io.IOException;
 
 import javax.sql.DataSource;
 
