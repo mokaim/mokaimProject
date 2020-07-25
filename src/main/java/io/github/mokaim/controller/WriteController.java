@@ -2,6 +2,7 @@ package io.github.mokaim.controller;
 
 import io.github.mokaim.domain.ViewInfoDTO;
 import io.github.mokaim.mapper.ViewMapperImpl;
+import io.github.mokaim.service.ViewServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,21 +18,21 @@ public class WriteController {
 	
 
 	@Autowired
-	ViewMapperImpl viewMapperImpl;
+	ViewServiceImpl viewService;
 	
-	@GetMapping("/write")
+	@GetMapping("/post")
 	public String write() {
 
 		return "write";
 	}
 	
-	@GetMapping("/view/{bno}")
-	public String showView(@PathVariable("bno") int bno,Model model) {
+	@GetMapping("/view/{postNumber}")
+	public String showView(@PathVariable("postNumber") int postNumber,Model model) {
 		
 		
-		log.info("test view bno : "  + bno);
+		log.info("test view bno : "  + postNumber);
 		
-		ViewInfoDTO viewInfoDTO =  viewMapperImpl.view(bno);
+		ViewInfoDTO viewInfoDTO =  viewService.select_View(postNumber);
 		model.addAttribute("view",viewInfoDTO);
 
 		return "view";

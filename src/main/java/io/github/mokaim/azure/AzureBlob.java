@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.InputStream;
 import java.util.UUID;
 
+import io.github.mokaim.service.CountServiceImpl;
+import io.github.mokaim.service.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,7 +21,6 @@ import com.microsoft.azure.storage.blob.CloudBlockBlob;
 import com.microsoft.azure.storage.blob.ListBlobItem;
 
 import io.github.mokaim.domain.ImageDTO;
-import io.github.mokaim.mapper.WriteMapperImpl;
 import lombok.extern.slf4j.Slf4j;
 //Azure
 
@@ -29,7 +30,10 @@ import lombok.extern.slf4j.Slf4j;
 public class AzureBlob {
 
 	@Autowired
-	WriteMapperImpl writeMapperImple;
+	PostServiceImpl postService;
+
+	@Autowired
+	CountServiceImpl countService;
 	
 
 	public static final String storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=mokaim;AccountKey=8YblAa2df/wFk+mqBzMJlTHio0ioNUCaolHo4XPYfVWADY+G+kYfw+Vz4736YlXXexGVLUK3WDvKdr3CDUje+A==;EndpointSuffix=core.windows.net";
@@ -76,24 +80,20 @@ public class AzureBlob {
 				
 				uploadFileName = uuid + multipartFile.getOriginalFilename();
 				log.info("only file name : " + uploadFileName);
-				
-				imageDTO.set_img_id(writeMapperImple.count_img_TB() + 1);
+
 				imageDTO.set_img_name(uploadFileName);
-				imageDTO.set_img_url("https://mokaim.blob.core.windows.net/mokaim-container/"+uploadFileName);
-				imageDTO.setBno(writeMapperImple.count_write_TB());
+				imageDTO.set_img_location("https://mokaim.blob.core.windows.net/mokaim-container/"+uploadFileName);
+				imageDTO.set_img_source(countService.count_LastPostNumber());
+
+
 				
-				
-				
-				
-				log.info("img_id : " + imageDTO.get_img_id());
+				log.info("img_id : " + imageDTO.get_img_num());
 				log.info("img_name : " + imageDTO.get_img_name());
-				log.info("img_url : " + imageDTO.get_img_url());
+				log.info("img_url : " + imageDTO.get_img_location());
+				log.info("img source : " + imageDTO.get_img_source());
 				
 				
-				
-				
-				writeMapperImple.insert_img_TB(imageDTO);
-				
+				postService.insert_img_TB(imageDTO);
 
 				//https://stackoverflow.com/questions/35860578/azure-storage-through-java-mvc-web-site 
 				//블롭스토리지로 바로 파일업로드 처리!!

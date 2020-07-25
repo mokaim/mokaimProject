@@ -7,12 +7,12 @@ import lombok.Setter;
 @Setter
 public class ViewInfoDTO {
 
-	private int bno;
-	private String title;
-	private String story;
+	private int _post_num;
+	private String _post_title;
+	private String _post_content;
 
-	private int _img_id;
+	private int _img_num;
 	private String _img_name;
-	private String _img_url;
+	private String _img_location;
 	
 }

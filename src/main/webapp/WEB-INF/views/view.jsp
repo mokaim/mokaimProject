@@ -72,14 +72,14 @@
 
                 <div class="col-md-9 pt-4">
                     <figure class="mb-5" data-aos="fade-up">
-                        <img src="${view._img_url}" alt="Image" class="img-fluid">
+                        <img src="${view._img_location}" alt="Image" class="img-fluid">
                     </figure>
 
-                    <h2 class="text-white mb-4" data-aos="fade-up">${view.title}</h2>
+                    <h2 class="text-white mb-4" data-aos="fade-up">${view._post_title}</h2>
 
                     <div class="row" data-aos="fade-up">
                         <div class="col-md-12">
-    						${view.story}
+    						${view._post_content}
                         </div>
                     </div>
                 </div>

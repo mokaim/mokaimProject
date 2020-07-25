@@ -7,42 +7,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="io.github.mokaim.mapper">
 
 
-	<select id="count_imgTest" resultType="int">
-    	SELECT COUNT(*) FROM test_image
-    </select>
+	<!--  SELECT 문 -->
 
+    <select id="select_View" resultType="io.github.mokaim.domain.ViewInfoDTO" parameterType="int">
 
-    
-    <select id="select_AllList" resultType="io.github.mokaim.domain.ViewInfoDTO">
-    	SELECT write.bno,
-			   write.title,
-			   write.story,
-			   img._img_id,
+         SELECT post._post_num,
+			   post._post_title,
+			   post._post_content,
+			   img._img_num,
 			   img._img_name,
-			   img._img_url FROM test_write write FULL OUTER JOIN test_image img ON write.bno = img.bno ORDER BY write.bno DESC;
-    </select>
-    
-    
-    
-    
-    <select id="count_Write" resultType="int">
-    	SELECT COUNT(*) FROM test_write
-    </select>
-    
-	<insert id="insert_Write" parameterType="io.github.mokaim.domain.WriteDTO">
-		INSERT INTO test_write VALUES(#{bno}, #{title}, #{story})
-	</insert>
-	
-	
-	<select id="select_viewTest" resultType="io.github.mokaim.domain.ViewInfoDTO" parameterType="int">
-			
-		SELECT write.bno,
-			   write.title,
-			   write.story,
-			   img._img_id,
-			   img._img_name,
-			   img._img_url FROM test_write write FULL OUTER JOIN test_image img ON write.bno = img.bno WHERE write.bno = #{bno}
-    
+			   img._img_location FROM post post FULL OUTER JOIN img img ON post._post_num = img._img_num WHERE post._post_num = #{_post_num}
+
 	</select>
-   
+
+	<select id="select_List" resultType="io.github.mokaim.domain.ViewInfoDTO">
+    	SELECT post._post_num,
+			   post._post_title,
+			   post._post_content,
+			   img._img_num,
+			   img._img_name,
+			   img._img_location FROM post post FULL OUTER JOIN img img ON post._post_num = img._img_source ORDER BY post._post_num DESC;
+    </select>
+
+
+
+
+
+
+	<!-- INSERT 문 -->
+
+
+    <insert id="insert_Post" parameterType="io.github.mokaim.domain.PostDTO">
+		INSERT INTO post VALUES(NEXT VALUE FOR post_seq, #{_post_title}, #{_post_content}, 'admin')
+	</insert>
+
+	<insert id="insert_Img" parameterType="io.github.mokaim.domain.ImageDTO">
+
+		INSERT INTO img VALUES(NEXT VALUE FOR img_seq, #{_img_name}, #{_img_location}, #{_img_source})
+	</insert>
+
+
+	<!-- COUNT 문 -->
+
+
+	<select id="count_Post" resultType="int">
+		SELECT COUNT(*) FROM post
+	</select>
+
+	<select id="count_LastPostNumber" resultType="int">
+		SELECT TOP 1 _post_num FROM post ORDER BY _post_num DESC
+	</select>
+
+
+
+
+
+
+
 </mapper>

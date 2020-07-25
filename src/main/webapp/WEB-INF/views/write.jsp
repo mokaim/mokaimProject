@@ -177,8 +177,8 @@
             console.log(files);
 
             
-            formData.append("subject",subject);
-            formData.append("story",story);
+            formData.append("title",subject);
+            formData.append("content",story);
             
             for(var i = 0; i < files.length; i++){
             	
@@ -194,7 +194,7 @@
             console.log(formData);
 
             $.ajax({
-              url : '/write',
+              url : '/post',
               processData : false,
               contentType : false,
               data : formData,

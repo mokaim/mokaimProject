@@ -1,10 +1,11 @@
 package io.github.mokaim.controller;
 
 import io.github.mokaim.azure.AzureBlob;
-import io.github.mokaim.domain.WriteDTO;
-import io.github.mokaim.mapper.WriteMapperImpl;
+import io.github.mokaim.domain.PostDTO;
+import io.github.mokaim.service.PostServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,33 +16,43 @@ import org.springframework.web.multipart.MultipartFile;
 public class WriteActionController {
 
     @Autowired
-    WriteMapperImpl writeMapperImpl;
+    PostServiceImpl postService;
 
     @Autowired
     AzureBlob azureBlob;
 
-    @PostMapping("/write")
-    public String from_ajax_to_AzureStorage(@RequestParam("subject") String subject,
-                                @RequestParam("story") String story ,
+    @Transactional
+    @PostMapping("/post")
+    public String from_ajax_to_AzureStorage(@RequestParam("title") String title,
+                                @RequestParam("content") String content ,
                                 MultipartFile[] uploadFile) {
 
         log.info("update ajax post-=======================");
 
-        log.info("subject : " + subject);
-        log.info("story : " + story);
+        log.info("subject : " + title);
+        log.info("story : " + content);
         log.info("image Name : " +  uploadFile[0].getOriginalFilename());
 
-        WriteDTO writeDTO = new WriteDTO();
+        PostDTO postDTO = new PostDTO();
 
 
+        postDTO.set_post_title(title);
+        postDTO.set_post_content(content);
 
-        writeDTO.setBno(writeMapperImpl.count_write_TB() + 1);
-        writeDTO.setTitle(subject);
-        writeDTO.setStory(story);
+        boolean validate = false;
 
-        writeMapperImpl.insert_write_TB(writeDTO);
+        try{
 
-        boolean validate = azureBlob.azureImageUpload(uploadFile);
+            postService.insert_post_TB(postDTO);
+            log.info("포스트 완료");
+            validate = azureBlob.azureImageUpload(uploadFile);
+            log.info("이미지 업로드 완료");
+
+        }catch (Exception e){
+            log.warn(e.getMessage());
+        }
+
+
 
         if(validate == true) {
             return "complete!!";

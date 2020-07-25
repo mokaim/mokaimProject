@@ -55,7 +55,7 @@
       <ul class="js-clone-nav">
         <li class="active"><a href="/">Home</a></li>
         <li><a href="blog.html">Blog</a></li>
-        <li><a href="/write">Write</a></li>
+        <li><a href="/post">Write</a></li>
       </ul>
       <ul class="social js-clone-nav">
         <li><a href="#"><span class="icon-facebook"></span></a></li>
@@ -74,12 +74,12 @@
 
 
 		 <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
-          <a href="/view/${testImageDTO.bno}" class="d-block photo-item">
-            <img src="${testImageDTO._img_url}" alt="Image" class="img-fluid">
+          <a href="/view/${testImageDTO._post_num}" class="d-block photo-item">
+            <img src="${testImageDTO._img_location}" alt="Image" class="img-fluid">
             <div class="photo-text-more">
 
-              <h3 class="heading"><c:out value="${testImageDTO.title}" /></h3>
-              <span class="meta"><c:out value="${testImageDTO.story}" /></span>
+              <h3 class="heading"><c:out value="${testImageDTO._post_title}" /></h3>
+              <span class="meta"><c:out value="${testImageDTO._post_content}" /></span>
 
             </div>
           </a>

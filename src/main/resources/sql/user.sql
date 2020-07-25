@@ -128,6 +128,9 @@ CACHE
 GO
 
 
+ALTER SEQUENCE Samples.IDLabel
+RESTART WITH 1 ;
+
 
 
 create table usr(
@@ -143,7 +146,7 @@ create table post(
 	_post_content varchar(1024),
 	_post_usr varchar(128),
 
-	foreign key (_post_usr) references usr(_usr_email)
+	foreign key (_post_usr) references usr(_usr_email) on delete cascade on update cascade
 )
 
 
@@ -153,7 +156,7 @@ create table img(
 	_img_location varchar(512),
 	_img_source int,
 
-	foreign key (_img_source) references post(_post_num)
+	foreign key (_img_source) references post(_post_num) on delete cascade on update cascade
 )
 
 INSERT usr(_usr_num, _usr_email, _usr_pw)
@@ -172,22 +175,27 @@ create table comments(
 	_post_num int,
 	reg_date date,
 
-	foreign key (_usr_email) references usr(_usr_email) on delete cascade on update cascade,
 	foreign key (_post_num) references post(_post_num) on delete cascade on update cascade,
 );
 
 
 create table reply(
+
+    _reply_num int primary key,
 	_usr_email varchar(128),
 	comments_id int,
 	_post_num int,
 	reply_content varchar(128),
 	reply_date date
 
-	foreign key (comments_id) references comments(comments_id) on delete cascade on update cascade,
-	foreign key (_usr_email) references comments(comments_id) on delete cascade on update cascade,
-	foreign key (comments_id) references comments(comments_id) on delete cascade on update cascade,
+    foreign key (comments_id) references comments(comments_id) on delete cascade on update cascade,
+
 );
+
+
+
+//https://stackoverflow.com/questions/851625/foreign-key-constraint-may-cause-cycles-or-multiple-cascade-paths?rq=1
+SQL 서버는 cascade 경로를 계산할 때 최악의 경로는 에러 메시지를 띄운다.
 
 drop table reply;
 
