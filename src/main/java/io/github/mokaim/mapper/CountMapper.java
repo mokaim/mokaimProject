@@ -5,4 +5,5 @@ public interface CountMapper {
     public int count_Post();
 
     public int count_LastPostNumber();
+
 }

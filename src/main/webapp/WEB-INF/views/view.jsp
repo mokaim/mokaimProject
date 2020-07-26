@@ -156,9 +156,10 @@
 
             <div class="row justify-content-center mt-5">
                 <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
-                    <form id="testform">
+                    <form id="commentsForm">
                         <div class="form-group">
-                            <textarea class="form-control" name="story" placeholder="댓글을 입력하세요"></textarea>
+                            <textarea class="form-control" name="comment" placeholder="댓글을 입력하세요"></textarea>
+                            <input type="hidden" name="_usr_email" value="admin">
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
@@ -200,11 +201,11 @@
             function send() {
                 $.ajax({
                     type: 'POST',
-                    url: '/comments',
-                    data: $("#testform").serialize(),
-                    dataType: 'json',
+                    url: '/view/${view._post_num}',
+                    data: $("#commentsForm").serialize(),
+
                     success: function (data) {
-                        alert(data);
+                        show();
                     }
                 })
             }
@@ -216,7 +217,7 @@
 
 
                 $.getJSON(
-                    '/mokaim/show' + '.json',
+                    '/comments' + '.json',
                     function (data) {
 
                         html.push("<li>" + "<div class='row comments mb-3'>" + "<div class='col-1 usr-img'>");

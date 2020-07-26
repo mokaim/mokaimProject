@@ -1,5 +1,6 @@
 package io.github.mokaim.service;
 
+import io.github.mokaim.domain.CommentsDTO;
 import io.github.mokaim.domain.ImageDTO;
 import io.github.mokaim.domain.PostDTO;
 import io.github.mokaim.mapper.PostMapperImpl;
@@ -21,6 +22,11 @@ public class PostServiceImpl implements PostService{
     @Override
     public void insert_post_TB(PostDTO postDTO) {
         postMapper.insert_post_TB(postDTO);
+    }
+
+    @Override
+    public void insert_Comments(CommentsDTO commentsDTO) {
+        postMapper.insert_Comments(commentsDTO);
     }
 
 }

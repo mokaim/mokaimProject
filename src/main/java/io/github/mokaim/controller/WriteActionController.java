@@ -1,15 +1,17 @@
 package io.github.mokaim.controller;
 
 import io.github.mokaim.azure.AzureBlob;
+import io.github.mokaim.domain.CommentsDTO;
 import io.github.mokaim.domain.PostDTO;
 import io.github.mokaim.service.PostServiceImpl;
+import io.github.mokaim.service.ViewServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -17,6 +19,9 @@ public class WriteActionController {
 
     @Autowired
     PostServiceImpl postService;
+
+    @Autowired
+    ViewServiceImpl viewService;  //getCurrentDate
 
     @Autowired
     AzureBlob azureBlob;
@@ -62,4 +67,38 @@ public class WriteActionController {
 
 
     }
+
+
+    @Transactional
+    @PostMapping("/view/{postNumber}")
+    public String from_ajax_to_Comments(
+            @PathVariable("postNumber")  int postNumber,
+            @RequestParam("comment") String comment,
+            @RequestParam("_usr_email") String _usr_email
+    ){
+
+
+        log.info("postNumber : " + postNumber);
+        log.info("comment : " + comment);
+        log.info("_usr_email : " + _usr_email);
+
+        CommentsDTO commentsDTO = new CommentsDTO();
+        commentsDTO.setComments_content(comment);
+        commentsDTO.set_usr_email(_usr_email);
+        commentsDTO.set_post_num(2);
+        commentsDTO.setReg_date("2020-07-26");
+
+        postService.insert_Comments(commentsDTO);
+
+        log.info("===============================Success=================== ");
+
+        return "success";
+    }
+
+
+    @GetMapping("/view/{postNumber}/comments")
+    public List<CommentsDTO> getCommentsList(@PathVariable int postNumber){
+        return viewService.select_CommentsByPostNumber(postNumber);
+    }
+
 }

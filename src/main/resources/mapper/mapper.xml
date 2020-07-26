@@ -30,6 +30,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
 
+	<select id="select_CurrentDate" resultType="string">
+		SELECT GETDATE()
+	</select>
+
+	<select id="select_CommentsByPostNumber" resultType="io.github.mokaim.domain.CommentsDTO" parameterType="int">
+		SELECT * FROM comments WHERE _post_num = #{_post_num}
+	</select>
+
+
 
 
 
@@ -45,6 +54,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		INSERT INTO img VALUES(NEXT VALUE FOR img_seq, #{_img_name}, #{_img_location}, #{_img_source})
 	</insert>
+
+
+	<insert id="insert_Comments" parameterType="io.github.mokaim.domain.CommentsDTO">
+		INSERT INTO comments VALUES(NEXT VALUE FOR comments_seq, #{comments_content}, #{_usr_email}, #{_post_num}, #{reg_date})
+	</insert>
+
+
+
+
+
 
 
 	<!-- COUNT 문 -->
