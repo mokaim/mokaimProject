@@ -24,6 +24,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class WriteActionControllerTest {
 
+
+    //https://ktko.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81Spring-MockMvc-%ED%85%8C%EC%8A%A4%ED%8A%B8
+    //MockMVC 설명
+
     @Autowired
     WriteActionController writeActionController;
 
