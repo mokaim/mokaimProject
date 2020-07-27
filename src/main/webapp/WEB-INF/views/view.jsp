@@ -29,10 +29,20 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/comments.css">
+
+      <script src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
     
   </head>
   <body>
-  
+
+  <script>
+      $(function(){
+
+          show('testparam', function(){}, 'testerr');
+
+      });
+  </script>
+
 
 <div class="site-wrap">
 
@@ -108,41 +118,9 @@
                             <div class="row justify-content-center">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                     <ul class="p-0">
-                                        <li>
-                                            <div class="row comments mb-3">
-                                                <div class="col-1 usr-img ">
-                                                    <img class="rounded-circle"
-                                                         src="http://nicesnippets.com/demo/man02.png">
-                                                </div>
 
-                                                <div class="col-11 comment text-white">
-                                                    <h4 class="d-inline-flex p-2">test</h4>
-                                                    <time class="">2020-07-21</time>
+                                        <div id="target"></div>
 
-                                                    <p>hello world!</p>
-
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                        <ul class="p-0">
-                                            <li>
-                                                <div class="row comments mb-3">
-                                                    <div class="col-1 usr-img">
-                                                        <img class="rounded-circle"
-                                                             src="http://nicesnippets.com/demo/man02.png">
-                                                    </div>
-
-                                                    <div class="col-8 reply text-white">
-                                                        <h4 class="d-inline-flex p-2">test</h4>
-                                                        <time class="">2020-07-21</time>
-
-                                                        <p>hello world!</p>
-
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
                                     </ul>
                                 </div>
                             </div>
@@ -205,7 +183,7 @@
                     data: $("#commentsForm").serialize(),
 
                     success: function (data) {
-                        show();
+                        show('testparam', function(){}, 'testerr');
                     }
                 })
             }
@@ -217,14 +195,20 @@
 
 
                 $.getJSON(
-                    '/comments' + '.json',
+                    '/view/${view._post_num}/comments',
                     function (data) {
 
-                        html.push("<li>" + "<div class='row comments mb-3'>" + "<div class='col-1 usr-img'>");
-                        html.push("<img class='rounded-circle' src='http://nicesnippets.com/demo/man02.png'>" + "</div>" + "<div class='col-11 comment text-white'>");
-                        html.push("<h4 class='d-inline-flex p-2'>" + 'test' + "</h4>" +
-                            "<time>" + '2020-07-21 ' + "</time>" +
-                            "<p>" + 'hello world!' + "</p>" + "</div>" + "</div>" + "</li>");
+                        for(i=0; i<data.length; i++){
+
+                            html.push("<li>" + "<div class='row comments mb-3'>" + "<div class='col-1 usr-img'>");
+                            html.push("<img class='rounded-circle' src='http://nicesnippets.com/demo/man02.png'>" + "</div>" + "<div class='col-11 comment text-white'>");
+                            html.push("<h4 class='d-inline-flex p-2'>" + 'test' + "</h4>" +
+                                "<time>" + data.reg_date + "</time>" +
+                                "<p>" + data.comments_content + "</p>" + "</div>" + "</div>" + "</li>");
+                        }
+
+                        $('#target').html(html.join(''));
+
 
 
                     }
@@ -257,7 +241,7 @@
 
 
 
-  <script src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
+
   <script src="${pageContext.request.contextPath}/static/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="${pageContext.request.contextPath}/static/js/jquery-ui.js"></script>
   <script src="${pageContext.request.contextPath}/static/js/popper.min.js"></script>

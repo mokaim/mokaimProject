@@ -17,6 +17,10 @@ import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,17 +35,38 @@ class WriteActionControllerTest {
     @Autowired
     WriteActionController writeActionController;
 
+    MultiValueMap<String, String> test;
 
     MockMvc mockMvc;
 
     @BeforeEach
-    void setUp(){
+    void setUp()
+    {
         mockMvc = MockMvcBuilders.standaloneSetup(writeActionController).build();
+
     }
 
     @Test
     void getCommentsList() throws Exception {
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/view/2/comments").contentType(MediaType.APPLICATION_JSON);
+
+
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/view/2/comments.json").contentType(MediaType.APPLICATION_JSON);
         mockMvc.perform(requestBuilder).andExpect(status().isOk()).andDo(print());
     }
+
+
+    @Test
+    void from_ajax_to_Comments() throws Exception{
+
+        test = new LinkedMultiValueMap<String, String>();
+        test.add("postNumber", "2");
+        test.add("comment","testtest");
+        test.add("_usr_email","mokaim@naver.com");
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/view/2").params(test).contentType(MediaType.APPLICATION_JSON);
+        mockMvc.perform(requestBuilder).andExpect(status().isOk()).andDo(print());
+    }
+
+
 }

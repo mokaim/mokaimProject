@@ -85,7 +85,7 @@ public class WriteActionController {
         CommentsDTO commentsDTO = new CommentsDTO();
         commentsDTO.setComments_content(comment);
         commentsDTO.set_usr_email(_usr_email);
-        commentsDTO.set_post_num(2);
+        commentsDTO.set_post_num(postNumber);
         commentsDTO.setReg_date("2020-07-26");
 
         postService.insert_Comments(commentsDTO);
