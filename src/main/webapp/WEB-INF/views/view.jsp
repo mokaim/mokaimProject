@@ -177,6 +177,9 @@
 
         <script>
             function send() {
+
+
+
                 $.ajax({
                     type: 'POST',
                     url: '/view/${view._post_num}',

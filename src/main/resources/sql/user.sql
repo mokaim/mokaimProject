@@ -133,6 +133,8 @@ RESTART WITH 1 ;
 
 
 
+
+
 create table usr(
 	_usr_num int primary key,
 	_usr_email varchar(128) unique,
@@ -188,7 +190,9 @@ create table reply(
 	reply_content varchar(128),
 	reply_date date
 
-    foreign key (comments_id) references comments(comments_id) on delete cascade on update cascade,
+	foreign key (_usr_email) references usr(_usr_email) on delete cascade on update cascade,
+	foreign key (_post_num) references post(_post_num) on delete cascade on update cascade,
+    foreign key (comments_id) references comments(comments_id) on delete cascade on update cascade
 
 );
 
@@ -198,4 +202,10 @@ create table reply(
 SQL 서버는 cascade 경로를 계산할 때 최악의 경로는 에러 메시지를 띄운다.
 
 drop table reply;
+
+
+
+
+//http://blog.naver.com/PostView.nhn?blogId=gmrdud2gh&logNo=221348900456&parentCategoryNo=&categoryNo=13&viewDate=&isShowPopularPosts=false&from=postView
+트리거를 이용하여 ROW 삭제
 
