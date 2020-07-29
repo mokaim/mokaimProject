@@ -65,9 +65,9 @@
 
         <div class="main-menu">
             <ul class="js-clone-nav">
-                <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Write</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/main">Main</a></li>
+                <li><a href="/post">Write</a></li>
             </ul>
             <ul class="social js-clone-nav">
                 <li><a href="#"><span class="icon-facebook"></span></a></li>

@@ -209,3 +209,20 @@ drop table reply;
 //http://blog.naver.com/PostView.nhn?blogId=gmrdud2gh&logNo=221348900456&parentCategoryNo=&categoryNo=13&viewDate=&isShowPopularPosts=false&from=postView
 트리거를 이용하여 ROW 삭제
 
+
+CREATE TRIGGER test
+	ON comments AFTER DELETE
+	AS
+	BEGIN
+		DECLARE @comments_id int
+
+		SELECT @comments_id = comments_id FROM deleted
+
+		DELETE FROM reply WHERE comments_id = @comments_id
+END
+GO
+
+
+https://lefigaro.tistory.com/7
+
+MSSQL TransactSQL 을 이용한 DML DELETE 트리거 설정

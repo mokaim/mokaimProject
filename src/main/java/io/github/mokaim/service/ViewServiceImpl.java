@@ -22,7 +22,7 @@ public class ViewServiceImpl implements ViewService{
     }
 
     @Override
-    public List<ImageDTO> select_List() {
+    public List<ViewInfoDTO> select_List() {
         return viewMapper.select_List();
     }
 

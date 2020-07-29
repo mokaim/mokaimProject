@@ -10,7 +10,7 @@ public interface ViewMapper {
 
     public ViewInfoDTO select_View(int _post_num);
 
-    public List<ImageDTO> select_List();
+    public List<ViewInfoDTO> select_List();
 
     public String select_CurrentDate();
 

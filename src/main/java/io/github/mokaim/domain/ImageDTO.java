@@ -11,5 +11,6 @@ public class ImageDTO {
 	private String _img_name;
 	private String _img_location;
 	private int _img_source;
+
 	
 }

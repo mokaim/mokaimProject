@@ -54,7 +54,7 @@
     <div class="main-menu">
       <ul class="js-clone-nav">
         <li class="active"><a href="/">Home</a></li>
-        <li><a href="blog.html">Blog</a></li>
+        <li><a href="/main">Main</a></li>
         <li><a href="/post">Write</a></li>
       </ul>
       <ul class="social js-clone-nav">

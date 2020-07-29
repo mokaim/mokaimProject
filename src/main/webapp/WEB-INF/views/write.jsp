@@ -52,9 +52,9 @@
 
     <div class="main-menu">
       <ul class="js-clone-nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li class="active"><a href="contact.html">Write</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/main">Main</a></li>
+        <li class="active"><a href="/post">Write</a></li>
       </ul>
       <ul class="social js-clone-nav">
         <li><a href="#"><span class="icon-facebook"></span></a></li>
@@ -104,6 +104,18 @@
                         </div>
                       </div>
                     </div>
+
+
+                    <div class="row justify-content-center mt-5 mb-5" id="img_message" style="display: none">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-lg-12">
+                        <div class="alert alert-warning">
+                          반드시 한 개의 이미지를 업로드 해주세요.
+                        </div>
+                      </div>
+                    </div>
+
+
+
 
                     <div class="row form-group">
                       <div class="col-md-12">
@@ -204,6 +216,8 @@
                 window.location.href="/";
               }
 
+            }).fail(function(){
+              $('#img_message').css('display', 'block');
             });
 
           });

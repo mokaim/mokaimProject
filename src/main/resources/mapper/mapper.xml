@@ -14,6 +14,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          SELECT post._post_num,
 			   post._post_title,
 			   post._post_content,
+			   post._post_usr,
+			   post._post_datetime,
 			   img._img_num,
 			   img._img_name,
 			   img._img_location FROM post post FULL OUTER JOIN img img ON post._post_num = img._img_num WHERE post._post_num = #{_post_num}
@@ -24,6 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	SELECT post._post_num,
 			   post._post_title,
 			   post._post_content,
+			   post._post_usr,
+			   post._post_datetime,
 			   img._img_num,
 			   img._img_name,
 			   img._img_location FROM post post FULL OUTER JOIN img img ON post._post_num = img._img_source ORDER BY post._post_num DESC;
@@ -47,7 +51,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
     <insert id="insert_Post" parameterType="io.github.mokaim.domain.PostDTO">
-		INSERT INTO post VALUES(NEXT VALUE FOR post_seq, #{_post_title}, #{_post_content}, 'admin')
+		DECLARE @_post_datetime DATETIME
+		SELECT @_post_datetime = getdate()
+		INSERT INTO post VALUES(NEXT VALUE FOR post_seq, #{_post_title}, #{_post_content},'admin', @_post_datetime)
 	</insert>
 
 	<insert id="insert_Img" parameterType="io.github.mokaim.domain.ImageDTO">

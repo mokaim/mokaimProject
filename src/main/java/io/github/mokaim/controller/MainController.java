@@ -22,4 +22,12 @@ public class MainController {
 		return "index";
 	}
 
+	@GetMapping("/main")
+	public String main(Model model){
+
+		model.addAttribute("list",viewService.select_List());
+
+		return "main";
+	}
+
 }

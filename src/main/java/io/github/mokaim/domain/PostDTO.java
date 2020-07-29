@@ -12,4 +12,5 @@ public class PostDTO {
     private String _post_title;
     private String _post_content;
     private String _post_usr;
+    private String _post_datetime;
 }

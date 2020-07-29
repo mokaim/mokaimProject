@@ -25,7 +25,7 @@ public class ViewMapperImpl implements ViewMapper{
     }
 
     @Override
-    public List<ImageDTO> select_List() {
+    public List<ViewInfoDTO> select_List() {
         return sqlSession.selectList(NAME_SPACE + ".select_List");
     }
 
