@@ -1,5 +1,6 @@
 package io.github.mokaim.service;
 
+import io.github.mokaim.domain.CommentsAndReplyDTO;
 import io.github.mokaim.domain.CommentsDTO;
 import io.github.mokaim.domain.ImageDTO;
 import io.github.mokaim.domain.ViewInfoDTO;
@@ -15,4 +16,6 @@ public interface ViewService {
     public String select_CurrentDate();
 
     public List<CommentsDTO> select_CommentsByPostNumber(int _post_num);
+
+    public List<CommentsAndReplyDTO> select_CommentsAndReplyByPostNumber(int _post_num);
 }

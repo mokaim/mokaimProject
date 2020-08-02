@@ -1,6 +1,7 @@
 package io.github.mokaim.controller;
 
 import io.github.mokaim.azure.AzureBlob;
+import io.github.mokaim.domain.CommentsAndReplyDTO;
 import io.github.mokaim.domain.CommentsDTO;
 import io.github.mokaim.domain.PostDTO;
 import io.github.mokaim.service.PostServiceImpl;
@@ -29,8 +30,8 @@ public class WriteActionController {
     @Transactional
     @PostMapping("/post")
     public String from_ajax_to_AzureStorage(@RequestParam("title") String title,
-                                @RequestParam("content") String content ,
-                                MultipartFile[] uploadFile) {
+                                            @RequestParam("content") String content ,
+                                            MultipartFile[] uploadFile) {
 
         log.info("update ajax post-=======================");
 
@@ -64,8 +65,6 @@ public class WriteActionController {
         }else {
             return "false";
         }
-
-
     }
 
 
@@ -100,5 +99,12 @@ public class WriteActionController {
     public List<CommentsDTO> getCommentsList(@PathVariable int postNumber){
         return viewService.select_CommentsByPostNumber(postNumber);
     }
+
+    @GetMapping("/view/{postNumber}/comments-reply")
+    public List<CommentsAndReplyDTO> getCommentsAndReplyList(@PathVariable int postNumber){
+        return viewService.select_CommentsAndReplyByPostNumber(postNumber);
+    }
+
+
 
 }

@@ -10,20 +10,15 @@
     <title>Shutter &mdash; Colorlib Website Template</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fonts/icomoon/style.css">
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/magnific-popup.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/jquery-ui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/owl.carousel.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/owl.theme.default.min.css">
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-datepicker.css">
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fonts/flaticon/font/flaticon.css">
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/aos.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/fancybox.min.css">
 
@@ -93,13 +88,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-
-
 
 
         <div class="container-fluid mt-5">
@@ -112,13 +102,11 @@
 
             <div class="row mt-5 justify-content-center">
                 <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
-
                     <div class="row justify-content-start">
                         <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
-                            <div class="row justify-content-center">
+                            <div class="row justify-content-center" data-aos="fade-up">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                     <ul class="p-0">
-
                                         <div id="target"></div>
 
                                     </ul>
@@ -126,7 +114,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -146,7 +133,6 @@
                                 </button>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -171,14 +157,9 @@
         </div>
 
 
-
-
-
-
         <script>
+
             function send() {
-
-
 
                 $.ajax({
                     type: 'POST',
@@ -192,22 +173,49 @@
             }
 
             function show(param, callback, error) {
-
-
                 var html = [];
 
-
                 $.getJSON(
-                    '/view/${view._post_num}/comments',
-                    function (data) {
+                    '/view/${view._post_num}/comments-reply',
+                    (data) => {
+
+                        var before_comments_id = 0;
 
                         for(i=0; i<data.length; i++){
 
-                            html.push("<li>" + "<div class='row comments mb-3'>" + "<div class='col-1 usr-img'>");
-                            html.push("<img class='rounded-circle' src='http://nicesnippets.com/demo/man02.png'>" + "</div>" + "<div class='col-11 comment text-white'>");
-                            html.push("<h4 class='d-inline-flex p-2'>" + data[i]._usr_email + "</h4>" +
-                                "<time>" + data[i].reg_date + "</time>" +
-                                "<p>" + data[i].comments_content + "</p>" + "</div>" + "</div>" + "</li>");
+
+                            var comments_id = data[i].comments_id;
+                            var reply_comments_id = data[i].reply_comments_id;
+
+                            if(comments_id != before_comments_id){
+
+                                before_comments_id = comments_id;
+
+                                html.push("<li>" + "<div class='row comments mb-3'>" + "<div class='col-1 usr-img'>");
+                                html.push("<img class='rounded-circle' src='http://nicesnippets.com/demo/man02.png'>" + "</div>" + "<div class='col-11 comment text-white'>");
+                                html.push("<h4 class='d-inline-flex p-2'>" + data[i]._usr_email + "</h4>" +
+                                    "<time>" + data[i].reg_date + "</time>" +
+                                    "<p>" + data[i].comments_content + "</p>" + "</div>" + "</div>" + "</li>");
+
+                            }
+
+
+                            if(comments_id === reply_comments_id){
+                                html.push("<ul class='p-0'>" +  "<li>" + "<div class='row comments mb-3'>" +
+                                    "<div class='col-1 usr-img'>" +
+                                    "<img class='rounded-circle' src='http://nicesnippets.com/demo/man02.png'>" +
+                                    "</div>" +
+                                    "<div class='col-8 reply text-white'>" +
+                                    "<h4 class='d-inline-flex p-2'>test</h4>" +
+                                    "<time class=''>" + "</time>" +
+                                    "<p>" + 'test'  + "</p>"
+                                    + "</div>"
+
+                                    +"</div>" +"</li>"+ "</ul>");
+
+                            }
+
+
                         }
 
                         $('#target').html(html.join(''));
@@ -215,6 +223,8 @@
 
 
                     }
+
+
                 ).fail(function (xhr, status, err) {
                     if (error) {
                         error();

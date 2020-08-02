@@ -68,5 +68,13 @@ class WriteActionControllerTest {
         mockMvc.perform(requestBuilder).andExpect(status().isOk()).andDo(print());
     }
 
+    @Test
+    void from_ajax_to_CommentsAndReply() throws Exception {
+        test = new LinkedMultiValueMap<String, String>();
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/view/5/comments-reply").contentType(MediaType.APPLICATION_JSON);
+        mockMvc.perform(requestBuilder).andExpect(status().isOk()).andDo(print());
+    }
+
 
 }

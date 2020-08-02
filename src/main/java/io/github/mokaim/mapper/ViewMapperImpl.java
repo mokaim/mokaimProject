@@ -1,5 +1,6 @@
 package io.github.mokaim.mapper;
 
+import io.github.mokaim.domain.CommentsAndReplyDTO;
 import io.github.mokaim.domain.CommentsDTO;
 import io.github.mokaim.domain.ImageDTO;
 import io.github.mokaim.domain.ViewInfoDTO;
@@ -38,6 +39,11 @@ public class ViewMapperImpl implements ViewMapper{
     @Override
     public List<CommentsDTO> select_CommentsByPostNumber(int _post_num) {
         return sqlSession.selectList(NAME_SPACE + ".select_CommentsByPostNumber", _post_num);
+    }
+
+    @Override
+    public List<CommentsAndReplyDTO> select_CommentsAndReplyByPostNumber(int _post_num) {
+        return sqlSession.selectList(NAME_SPACE + ".select_CommentsAndReplyByPostNumber", _post_num);
     }
 
 

@@ -42,14 +42,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM comments WHERE _post_num = #{_post_num}
 	</select>
 
+	<select id="select_CommentsAndReplyByPostNumber" resultType="io.github.mokaim.domain.CommentsAndReplyDTO" parameterType="int">
+		SELECT comments.comments_id,
+	 		   comments.comments_content,
+	 		   comments._usr_email,
+	  		   comments._post_num,
+	  		   comments.reg_date,
+	  		   reply._reply_num,
+	   		   reply._usr_email AS reply_usr_email,
+	 		   reply.comments_id AS reply_comments_id,
+	  		   reply._post_num AS reply_post_num,
+	  		   reply.reply_content,
+	   		   reply.reply_date FROM comments comments LEFT JOIN reply reply ON comments.comments_id = reply.comments_id WHERE comments._post_num = #{_post_num} ORDER BY comments.comments_id DESC;
+
+	</select>
+
+
 
 
 
 
 
 	<!-- INSERT 문 -->
-
-
     <insert id="insert_Post" parameterType="io.github.mokaim.domain.PostDTO">
 		DECLARE @_post_datetime DATETIME
 		SELECT @_post_datetime = getdate()
@@ -57,7 +71,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<insert id="insert_Img" parameterType="io.github.mokaim.domain.ImageDTO">
-
 		INSERT INTO img VALUES(NEXT VALUE FOR img_seq, #{_img_name}, #{_img_location}, #{_img_source})
 	</insert>
 
@@ -73,8 +86,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<!-- COUNT 문 -->
-
-
 	<select id="count_Post" resultType="int">
 		SELECT COUNT(*) FROM post
 	</select>

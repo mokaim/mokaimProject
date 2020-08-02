@@ -1,5 +1,6 @@
 package io.github.mokaim.service;
 
+import io.github.mokaim.domain.CommentsAndReplyDTO;
 import io.github.mokaim.domain.CommentsDTO;
 import io.github.mokaim.domain.ImageDTO;
 import io.github.mokaim.domain.ViewInfoDTO;
@@ -36,4 +37,11 @@ public class ViewServiceImpl implements ViewService{
     public List<CommentsDTO> select_CommentsByPostNumber(int _post_num) {
         return viewMapper.select_CommentsByPostNumber(_post_num);
     }
+
+    @Override
+    public List<CommentsAndReplyDTO> select_CommentsAndReplyByPostNumber(int _post_num) {
+        return viewMapper.select_CommentsAndReplyByPostNumber(_post_num);
+    }
+
+
 }
