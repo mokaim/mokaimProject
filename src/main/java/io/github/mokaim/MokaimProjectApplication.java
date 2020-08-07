@@ -6,11 +6,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 
 @MapperScan(basePackages = "io.github.mokaim.mapper")
 @Slf4j
 @SpringBootApplication
+@EnableAspectJAutoProxy
 public class MokaimProjectApplication {
 
 	public static void main(String[] args) {	
