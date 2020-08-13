@@ -30,9 +30,22 @@ public class MainController {
 		return "main";
 	}
 
+
+
 	@GetMapping("/login")
 	public String login(){
 		return "login";
+
+	}
+
+	@GetMapping("/deniedpage")
+	public String deniedPage(){
+		return "deniedpage";
+	}
+
+	@GetMapping("/admin")
+	public String admin(){
+		return "admin";
 	}
 
 }

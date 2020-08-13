@@ -75,15 +75,21 @@ public class AzureBlob {
 				blob = container.getBlockBlobReference(uuid + multipartFile.getOriginalFilename());
 				blob.getProperties().setContentType("image/jpeg");  //https://stackoverflow.com/questions/10040403/set-content-type-of-media-files-stored-on-blob 
 				//블록의 기본 옥텟설정을 바꾼다.
-				blob.upload(is, length);  //인풋스트림으로 파일을 업로드 시킨다.
-				
-				
+
+
+
+
 				uploadFileName = uuid + multipartFile.getOriginalFilename();
 				log.info("only file name : " + uploadFileName);
 
 				imageDTO.set_img_name(uploadFileName);
 				imageDTO.set_img_location("https://mokaim.blob.core.windows.net/mokaim-container/"+uploadFileName);
 				imageDTO.set_img_source(countService.count_LastPostNumber());
+
+
+				blob.upload(is, length);  //인풋스트림으로 파일을 업로드 시킨다.
+
+
 
 
 				

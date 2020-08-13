@@ -1,6 +1,5 @@
 package io.github.mokaim.config;
 
-
 import javax.sql.DataSource;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

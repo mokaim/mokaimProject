@@ -5,10 +5,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@Configuration
-public class SpringBootSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Override
+public class SpringBootSecurityConfiguration{
+
+
+/*    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("user")
@@ -26,5 +27,5 @@ public class SpringBootSecurityConfiguration extends WebSecurityConfigurerAdapte
                 .hasAnyRole("USER")
                 .and()
                 .formLogin().loginPage("/login").permitAll();
-    }
+    }*/
 }
