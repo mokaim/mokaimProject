@@ -99,7 +99,7 @@
                     <div class="row form-group mb-5">
                       <div class="col-md-12">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="fileInput" name="uploadFile">
+                          <input type="file" class="custom-file-input" id="fileInput" name="uploadFile" multiple>
                           <label class="custom-file-label" for="fileInput">사진을 업로드 해주세요.</label>
                         </div>
                       </div>

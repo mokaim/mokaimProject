@@ -94,6 +94,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT TOP 1 _post_num FROM post ORDER BY _post_num DESC
 	</select>
 
+	<select id="count_Distinct_img" resultType="int" parameterType="int">
+
+		<![CDATA[
+			SELECT COUNT(*) FROM img WHERE _img_source = #{_post_num}
+		]]>
+
+	</select>
 
 
 

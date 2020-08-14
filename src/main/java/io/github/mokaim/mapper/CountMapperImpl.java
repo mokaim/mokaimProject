@@ -22,4 +22,9 @@ public class CountMapperImpl implements CountMapper{
     public int count_LastPostNumber() {
         return sqlSession.selectOne(NAME_SPACE + ".count_LastPostNumber");
     }
+
+    @Override
+    public int count_Distinct_img(int _post_num) {
+        return sqlSession.selectOne(NAME_SPACE + ".count_Distinct_img",_post_num);
+    }
 }
