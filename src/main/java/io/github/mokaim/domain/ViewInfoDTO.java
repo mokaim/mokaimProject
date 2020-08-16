@@ -16,5 +16,6 @@ public class ViewInfoDTO {
 	private int _img_num;
 	private String _img_name;
 	private String _img_location;
+	private int _img_source;
 	
 }

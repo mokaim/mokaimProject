@@ -6,19 +6,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="io.github.mokaim.mapper">
 
-
 	<!--  SELECT 문 -->
 
     <select id="select_View" resultType="io.github.mokaim.domain.ViewInfoDTO" parameterType="int">
 
-         SELECT post._post_num,
-			   post._post_title,
-			   post._post_content,
-			   post._post_usr,
-			   post._post_datetime,
-			   img._img_num,
-			   img._img_name,
-			   img._img_location FROM post post FULL OUTER JOIN img img ON post._post_num = img._img_num WHERE post._post_num = #{_post_num}
+SELECT post._post_num,
+	   post._post_title,
+	   post._post_content,
+	   post._post_usr,
+	   post._post_datetime,
+	   img._img_num,
+	   img._img_name,
+	   img._img_location,
+	   img._img_source FROM post post RIGHT JOIN img img ON post._post_num = img._img_source WHERE post._post_num = #{_post_num}
+
+
 
 	</select>
 
@@ -56,6 +58,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   		   reply.reply_date FROM comments comments LEFT JOIN reply reply ON comments.comments_id = reply.comments_id WHERE comments._post_num = #{_post_num} ORDER BY comments.comments_id DESC;
 
 	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

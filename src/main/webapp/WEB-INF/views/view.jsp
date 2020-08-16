@@ -75,19 +75,33 @@
         <div class="container-fluid photos">
             <div class="row justify-content-center">
 
-                <div class="col-md-9 pt-4">
-                    <figure class="mb-5" data-aos="fade-up">
-                        <img src="${view._img_location}" alt="Image" class="img-fluid">
-                    </figure>
 
-                    <h2 class="text-white mb-4" data-aos="fade-up">${view._post_title}</h2>
+                <div class="col-md-9 pt-4">
+
+                    <p><h2 class="text-white mb-4" data-aos="fade-up">${view._post_title}</h2></p>
 
                     <div class="row" data-aos="fade-up">
                         <div class="col-md-12">
-    						${view._post_content}
+                            ${view._post_content}
                         </div>
                     </div>
+
+
+                     <c:forEach var="viewInfoDTO" items="${imgList}">
+
+
+                        <figure class="mb-5" data-aos="fade-up">
+                            <img src="${viewInfoDTO._img_location}" alt="Image" class="img-fluid">
+                        </figure>
+
+                     </c:forEach>
+
+
+
                 </div>
+
+
+
             </div>
         </div>
 
@@ -227,6 +241,7 @@
 
                 ).fail(function (xhr, status, err) {
                     if (error) {
+                        console.log("문제발생");
                         error();
                     }
                 })

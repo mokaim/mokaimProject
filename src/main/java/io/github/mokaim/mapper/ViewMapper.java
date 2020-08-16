@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ViewMapper {
 
-    public ViewInfoDTO select_View(int _post_num);
+    public List<ViewInfoDTO> select_View(int _post_num);
 
     public List<ViewInfoDTO> select_List();
 

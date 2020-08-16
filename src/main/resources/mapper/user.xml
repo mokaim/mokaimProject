@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="io.github.mokaim.mapper.UserRepository">
+
+    <select id="identifyUser" parameterType="string" resultMap="userDetails">
+        select u._usr_email,
+	        u._usr_pw,
+	        r.role_name
+	        from usr u inner join usr_role r on u._usr_num = r._usr_num where u._usr_email = 'test'
+
+    </select>
+
+    <resultMap id="userDetails" type="io.github.mokaim.auth.CustomUserDetails">
+
+        <result property="usrEmail" column="_usr_email"></result>
+        <result property="usrPw" column="_usr_pw"></result>
+
+        <collection property="roles" ofType="java.lang.String">
+            <result column="role_name"></result>
+        </collection>
+
+    </resultMap>
+
+
+    <insert id="insertTest" parameterType="io.github.mokaim.domain.TestUser">
+        INSERT INTO usr VALUES(#{num}, #{username}, #{password})
+    </insert>
+
+
+
+</mapper>

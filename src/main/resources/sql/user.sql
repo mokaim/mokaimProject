@@ -1,8 +1,17 @@
 create table usr(
 	_usr_num int primary key,
 	_usr_email varchar(128) unique,
-	_usr_pw varchar(128)
+	_usr_pw varchar(128),
+
 )
+
+create table usr_rule (
+    _usr_num int,
+	rule_code varchar(64),
+	rule_name varchar(32),
+	constraint rule_const foreign key (_usr_num) references usr(_usr_num)
+)
+
 
 create table post(
 	_post_num int primary key,
@@ -226,3 +235,5 @@ GO
 https://lefigaro.tistory.com/7
 
 MSSQL TransactSQL 을 이용한 DML DELETE 트리거 설정
+
+DROP TRIGGER

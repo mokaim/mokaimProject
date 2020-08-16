@@ -21,13 +21,14 @@ public class ViewMapperImpl implements ViewMapper{
 
 
     @Override
-    public ViewInfoDTO select_View(int _post_num) {
-        return sqlSession.selectOne(NAME_SPACE + ".select_View",_post_num);
+    public List<ViewInfoDTO> select_View(int _post_num) {
+        return sqlSession.selectList(NAME_SPACE + ".select_View",_post_num);
     }
 
     @Override
     public List<ViewInfoDTO> select_List() {
         return sqlSession.selectList(NAME_SPACE + ".select_List");
+
     }
 
 

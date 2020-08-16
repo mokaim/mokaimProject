@@ -71,11 +71,13 @@ public class WriteActionController {
     @Transactional
     @PostMapping("/view/{postNumber}")
     public String from_ajax_to_Comments(
-            @PathVariable("postNumber")  int postNumber,
+            @PathVariable("postNumber")  String postNumber,
             @RequestParam("comment") String comment,
             @RequestParam("_usr_email") String _usr_email
     ){
 
+
+        int num = Integer.parseInt(postNumber);
 
         log.info("postNumber : " + postNumber);
         log.info("comment : " + comment);
@@ -84,7 +86,7 @@ public class WriteActionController {
         CommentsDTO commentsDTO = new CommentsDTO();
         commentsDTO.setComments_content(comment);
         commentsDTO.set_usr_email(_usr_email);
-        commentsDTO.set_post_num(postNumber);
+        commentsDTO.set_post_num(num);
         commentsDTO.setReg_date("2020-07-26");
 
         postService.insert_Comments(commentsDTO);
@@ -96,12 +98,21 @@ public class WriteActionController {
 
 
     @GetMapping("/view/{postNumber}/comments")
-    public List<CommentsDTO> getCommentsList(@PathVariable int postNumber){
+    public List<CommentsDTO> getCommentsList(@PathVariable Integer postNumber){
+
+
+
+        log.info("테스트 넘버 : " + postNumber);
+
         return viewService.select_CommentsByPostNumber(postNumber);
     }
 
     @GetMapping("/view/{postNumber}/comments-reply")
-    public List<CommentsAndReplyDTO> getCommentsAndReplyList(@PathVariable int postNumber){
+    public List<CommentsAndReplyDTO> getCommentsAndReplyList(@PathVariable Integer postNumber){
+
+
+        log.info("테스트 넘버 : " + postNumber);
+
         return viewService.select_CommentsAndReplyByPostNumber(postNumber);
     }
 

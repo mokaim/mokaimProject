@@ -2,20 +2,18 @@ package io.github.mokaim.service;
 
 import io.github.mokaim.domain.CommentsAndReplyDTO;
 import io.github.mokaim.domain.CommentsDTO;
-import io.github.mokaim.domain.ImageDTO;
 import io.github.mokaim.domain.ViewInfoDTO;
 import io.github.mokaim.mapper.CountMapperImpl;
 import io.github.mokaim.mapper.ViewMapperImpl;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
+@Slf4j
 @Service
 public class ViewServiceImpl implements ViewService{
 
@@ -27,7 +25,7 @@ public class ViewServiceImpl implements ViewService{
 
 
     @Override
-    public ViewInfoDTO select_View(int _post_num) {
+    public List<ViewInfoDTO> select_View(int _post_num) {
         return viewMapper.select_View(_post_num);
     }
 
@@ -36,22 +34,40 @@ public class ViewServiceImpl implements ViewService{
 
         List<ViewInfoDTO> list = viewMapper.select_List();
         List<ViewInfoDTO> result_list = new ArrayList<ViewInfoDTO>();
-        HashMap<Integer, Integer> hashMap = new HashMap<>();
-
+        Map<Integer, ViewInfoDTO> map = new HashMap<>();
 
         for(ViewInfoDTO viewInfoDTO : list){
-            if(!(hashMap.containsKey(viewInfoDTO.get_post_num()))){
-                hashMap.put(viewInfoDTO.get_post_num(),1);
+            int postNumber = viewInfoDTO.get_post_num();
+            int img_count = countMapper.count_Distinct_img(postNumber);
+
+            if(img_count > 1){
+                if(map.containsKey(postNumber)){
+
+                }else{
+
+                    map.put(postNumber, viewInfoDTO);
+                }
+
+            }else{
+                map.put(postNumber, viewInfoDTO);
             }
         }
 
-/*
-        List<ViewInfoDTO> list = new ArrayList<ViewInfoDTO>();
+        Iterator<Integer> iterator = map.keySet().iterator();
 
-        viewMapper.select_List().stream().filter(viewInfoDTO -> countMapper.count_Distinct_img(viewInfoDTO.get_post_num()) <= 1).forEach(viewInfoDTO -> list.add(viewInfoDTO));
-*/
+        for(int key : map.keySet()){
+            result_list.add(map.get((map.size() + 1) - key));
+        }
 
-        return list;
+
+      /*  List<ViewInfoDTO> list = new ArrayList<ViewInfoDTO>();
+
+        viewMapper.select_List().stream().filter(viewInfoDTO ->
+                countMapper.count_Distinct_img(viewInfoDTO.get_post_num()) <= 1).forEach(viewInfoDTO ->
+                list.add(viewInfoDTO));
+      */
+
+        return result_list;
     }
 
 
