@@ -18,7 +18,7 @@ create table post(
 	_post_title varchar(128),
 	_post_content varchar(1024),
 	_post_usr varchar(128),
-	
+	_post_datetime date
 	foreign key (_post_usr) references usr(_usr_email)
 )
 
@@ -141,7 +141,7 @@ ALTER SEQUENCE Samples.IDLabel
 RESTART WITH 1 ;
 
 
-
+DROP SEQUENCE post_seq
 
 
 create table usr(
@@ -156,7 +156,7 @@ create table post(
 	_post_title varchar(128),
 	_post_content varchar(1024),
 	_post_usr varchar(128),
-
+    _post_datetime date
 	foreign key (_post_usr) references usr(_usr_email) on delete cascade on update cascade
 )
 

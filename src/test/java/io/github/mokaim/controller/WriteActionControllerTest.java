@@ -1,5 +1,6 @@
 package io.github.mokaim.controller;
 
+import io.github.mokaim.domain.ImageDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -43,6 +44,7 @@ class WriteActionControllerTest {
     void setUp()
     {
         mockMvc = MockMvcBuilders.standaloneSetup(writeActionController).build();
+
 
     }
 

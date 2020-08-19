@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -25,9 +27,12 @@ public class WriteController {
 	ViewServiceImpl viewService;
 	
 	@GetMapping("/post")
-	public String write() {
+	public ModelAndView write(Principal principal, ModelAndView modelAndView) {
 
-		return "write";
+		modelAndView.addObject("userName", principal.getName());
+		modelAndView.setViewName("write");
+
+		return modelAndView;
 	}
 	
 	@GetMapping("/view/{postNumber}")

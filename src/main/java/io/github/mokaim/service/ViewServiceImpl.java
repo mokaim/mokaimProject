@@ -33,41 +33,25 @@ public class ViewServiceImpl implements ViewService{
     public List<ViewInfoDTO> select_List() {
 
         List<ViewInfoDTO> list = viewMapper.select_List();
-        List<ViewInfoDTO> result_list = new ArrayList<ViewInfoDTO>();
-        Map<Integer, ViewInfoDTO> map = new HashMap<>();
+        List<ViewInfoDTO> resultList = new ArrayList<ViewInfoDTO>();
+
+        int before_postNumber = 0;
+        int current_postNumber = 0;
 
         for(ViewInfoDTO viewInfoDTO : list){
-            int postNumber = viewInfoDTO.get_post_num();
-            int img_count = countMapper.count_Distinct_img(postNumber);
 
-            if(img_count > 1){
-                if(map.containsKey(postNumber)){
-
-                }else{
-
-                    map.put(postNumber, viewInfoDTO);
-                }
-
-            }else{
-                map.put(postNumber, viewInfoDTO);
+            log.info("포스트 넘버 : " + viewInfoDTO.get_post_num());
+            current_postNumber = viewInfoDTO.get_post_num();
+            if(before_postNumber != current_postNumber){
+                resultList.add(viewInfoDTO);
             }
-        }
 
-        Iterator<Integer> iterator = map.keySet().iterator();
-
-        for(int key : map.keySet()){
-            result_list.add(map.get((map.size() + 1) - key));
+            before_postNumber = current_postNumber;
         }
 
 
-      /*  List<ViewInfoDTO> list = new ArrayList<ViewInfoDTO>();
 
-        viewMapper.select_List().stream().filter(viewInfoDTO ->
-                countMapper.count_Distinct_img(viewInfoDTO.get_post_num()) <= 1).forEach(viewInfoDTO ->
-                list.add(viewInfoDTO));
-      */
-
-        return result_list;
+        return resultList;
     }
 
 

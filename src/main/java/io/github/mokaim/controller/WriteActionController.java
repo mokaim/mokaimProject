@@ -28,7 +28,7 @@ public class WriteActionController {
     AzureBlob azureBlob;
 
     @Transactional
-    @PostMapping("/post")
+    @PostMapping("/mymy")
     public String from_ajax_to_AzureStorage(@RequestParam("title") String title,
                                             @RequestParam("content") String content ,
                                             MultipartFile[] uploadFile) {
@@ -44,6 +44,7 @@ public class WriteActionController {
 
         postDTO.set_post_title(title);
         postDTO.set_post_content(content);
+
 
         boolean validate = false;
 

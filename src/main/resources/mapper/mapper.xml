@@ -95,7 +95,7 @@ SELECT post._post_num,
     <insert id="insert_Post" parameterType="io.github.mokaim.domain.PostDTO">
 		DECLARE @_post_datetime DATETIME
 		SELECT @_post_datetime = getdate()
-		INSERT INTO post VALUES(NEXT VALUE FOR post_seq, #{_post_title}, #{_post_content},'admin', @_post_datetime)
+		INSERT INTO post VALUES(NEXT VALUE FOR post_seq, #{_post_title}, #{_post_content},'test', @_post_datetime)
 	</insert>
 
 	<insert id="insert_Img" parameterType="io.github.mokaim.domain.ImageDTO">

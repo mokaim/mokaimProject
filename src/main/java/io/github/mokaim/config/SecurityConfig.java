@@ -60,7 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf()
+                .ignoringAntMatchers("/mymy")
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+
                 .and()
 
 
@@ -68,8 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/view/**").hasRole("MEMBER")
                 .antMatchers("/post**").hasRole("MEMBER")
-                .antMatchers("/").hasAuthority("ROLE_MEMBER")    //테스트
-                .antMatchers("/login**").permitAll()
+                .antMatchers("/").hasRole("MEMBER")    //테스트
+                .antMatchers("/login**","/mymy").permitAll()
                // .antMatchers("/**").permitAll()
                 .and()
 

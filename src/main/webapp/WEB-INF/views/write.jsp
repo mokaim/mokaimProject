@@ -17,16 +17,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/owl.theme.default.min.css">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-datepicker.css">
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fonts/flaticon/font/flaticon.css">
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/aos.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/fancybox.min.css">
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
-    
-    
-    <script src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/imagePreview.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+    <script src="${pageContext.request.contextPath}/static/js/imagePreview.js"></script>
 
   </head>
   <body>
@@ -45,16 +45,16 @@
 
   <header class="header-bar d-flex d-lg-block align-items-center" data-aos="fade-left">
     <div class="site-logo">
-      <a href="index.html">Shutter</a>
+      <a href="/">MOKAIM PROJECT</a>
     </div>
 
     <div class="d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
     <div class="main-menu">
       <ul class="js-clone-nav">
-        <li><a href="/">Home</a></li>
+        <li class="active"><a href="/">Home</a></li>
         <li><a href="/main">Main</a></li>
-        <li class="active"><a href="/post">Write</a></li>
+        <li><a href="/write">Write</a></li>
       </ul>
       <ul class="social js-clone-nav">
         <li><a href="#"><span class="icon-facebook"></span></a></li>
@@ -96,20 +96,31 @@
                     </div>
 
 
-                    <div class="row form-group mb-5">
+                    <!-- 템플릿 출저 : https://bootsnipp.com/snippets/2eNKz -->
+
+
+                    <div class="row justify-content-center mb-5">
                       <div class="col-md-12">
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="fileInput" name="uploadFile" multiple>
-                          <label class="custom-file-label" for="fileInput">사진을 업로드 해주세요.</label>
+                        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+                        <div class="form-group">
+                          <a href="javascript:void(0)" onclick="$('#pro-image').click()">Upload Image</a>
+                          <input type="file" id="pro-image" name="uploadFile" style="display: none;" class="form-control" multiple>
+                        </div>
+                        <div class="preview-images-zone">
+
+
                         </div>
                       </div>
+
                     </div>
+                    <!-- 템플릿 출저 : https://bootsnipp.com/snippets/2eNKz -->
 
 
                     <div class="row justify-content-center mt-5 mb-5" id="img_message" style="display: none">
                       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-lg-12">
                         <div class="alert alert-warning">
-                          반드시 한 개의 이미지를 업로드 해주세요.
+                          이미지 업로드에 실패하셨습니다.
                         </div>
                       </div>
                     </div>
@@ -203,14 +214,15 @@
             }
             
             
-            console.log(formData);
+            console.log(formData.get("title"));
+            console.log(formData.get("content"));
 
             $.ajax({
-              url : '/post',
+              url : '/mymy',
               processData : false,
               contentType : false,
               data : formData,
-              type : 'POST',
+              type : 'post',
               success : function(result){
                 alert("업로드 완료!!");
                 window.location.href="/";
@@ -234,7 +246,6 @@
 
 
   <script src="${pageContext.request.contextPath}/static/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="${pageContext.request.contextPath}/static/js/jquery-ui.js"></script>
   <script src="${pageContext.request.contextPath}/static/js/popper.min.js"></script>
   <script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
   <script src="${pageContext.request.contextPath}/static/js/owl.carousel.min.js"></script>
