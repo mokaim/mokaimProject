@@ -26,7 +26,7 @@ public class UserActionController {
 
 
     @PostMapping("/register")
-    public String register(UserDTO userDTO){
+    public UserDTO register(UserDTO userDTO){
 
 
 
@@ -37,17 +37,27 @@ public class UserActionController {
 
         if(password.equals(password_check)){
             log.info("똑같");
+            log.info("pass : " + password);
+            log.info("pass_check : " + password_check);
+
             realPassword = bCryptPasswordEncoder.encode(password);
 
             userDTO.setPassword(null);
             userDTO.setPassword(realPassword);
+            userDTO.setRole("MEMBER");
+
 
             userService.insert_UserInfo(userDTO);
 
-            return "success";
+            userDTO.setValidation("true");
+
+            return userDTO;
+        }else{
+            log.info("다름");
+            userDTO.setValidation("false");
         }
 
-        return "faild";
+        return userDTO;
     }
 
 

@@ -145,13 +145,15 @@
 
                             var formData = new FormData();
 
-                            var email = $("input[name='email']");
-                            var password = $("input[name='password']");
-                            var password_check = $("input[name='password_check']");
+                            var email = $("input[name='email']").val();
+                            var password = $("input[name='password']").val();
+                            var password_check = $("input[name='password_check']").val();
 
                             formData.append("email",email);
                             formData.append("password",password);
                             formData.append("password_check",password_check);
+
+
 
 
                             $.ajax({
@@ -159,7 +161,7 @@
                                 data : formData,
                                 processData : false,
                                 contentType : false,
-
+                                dataType : 'json',
                                 beforeSend : function(xhr)
                                 {
                                     xhr.setRequestHeader(header, token);

@@ -5,11 +5,12 @@ create table usr(
 
 )
 
-create table usr_rule (
-    _usr_num int,
-	rule_code varchar(64),
-	rule_name varchar(32),
-	constraint rule_const foreign key (_usr_num) references usr(_usr_num)
+ALTER TABLE usr ALTER COLUMN _usr_pw VARCHAR(256) ;
+
+create table usr_role (
+	_usr_email varchar(128),
+	role_name varchar(32),
+	constraint rule_const foreign key (_usr_email) references usr(_usr_email)
 )
 
 
