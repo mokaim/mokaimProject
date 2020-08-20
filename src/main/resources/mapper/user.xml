@@ -6,6 +6,7 @@
 
 <mapper namespace="io.github.mokaim.mapper.UserRepository">
 
+
     <select id="identifyUser" parameterType="string" resultMap="userDetails">
         select u._usr_email,
 	        u._usr_pw,
@@ -29,6 +30,15 @@
     <insert id="insertTest" parameterType="io.github.mokaim.domain.TestUser">
         INSERT INTO usr VALUES(#{num}, #{username}, #{password})
     </insert>
+
+    <insert id="insert_UserInfo" parameterType="io.github.mokaim.domain.UserDTO">
+        INSERT INTO usr VALUES(#{email}, #{password}, #{password_check})
+    </insert>
+
+
+
+
+
 
 
 

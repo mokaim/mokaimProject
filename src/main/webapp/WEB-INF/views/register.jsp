@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Shutter &mdash; Colorlib Website Template</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fonts/icomoon/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
@@ -22,6 +23,22 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/aos.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/fancybox.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+    <style>
+
+        input[type=email] {
+            background : transparent;
+        }
+
+    </style>
+
+
 
 </head>
 <body>
@@ -40,16 +57,18 @@
 
     <header class="header-bar d-flex d-lg-block align-items-center" data-aos="fade-left">
         <div class="site-logo">
-            <a href="/">Shutter</a>
+            <a href="index.html">Shutter</a>
         </div>
 
         <div class="d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
         <div class="main-menu">
             <ul class="js-clone-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/main">Main</a></li>
-                <li><a href="/write">Write</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="photos.html">Photos</a></li>
+                <li><a href="bio.html">Bio</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li class="active"><a href="contact.html">Contact</a></li>
             </ul>
             <ul class="social js-clone-nav">
                 <li><a href="#"><span class="icon-facebook"></span></a></li>
@@ -63,101 +82,111 @@
             <div class="row justify-content-center">
 
                 <div class="col-md-6 pt-4"  data-aos="fade-up">
-                    <h2 class="text-white mb-4">LogIn</h2>
+                    <h2 class="text-white mb-4">Sign Up</h2>
 
                     <div class="row">
                         <div class="col-md-12">
-                            <p class="mb-5"></p>
+                            <p class="mb-5">Please enter your information.</p>
 
 
                             <div class="row">
                                 <div class="col-md-12">
 
+                                    <form>
 
 
-                                    <form action="/loginpro" method="post">
+                                        <div class="row form-group">
+                                            <div class="col-md-12">
+                                                <label class="text-white" for="email">Email</label>
+                                                <input type="email" id="email" class="form-control" name="email">
+                                            </div>
+                                        </div>
 
+                                        <div class="row form-group">
+                                            <div class="col-md-12">
+                                                <label class="text-white" for="password">Password</label>
+                                                <input type="password" id="password" class="form-control" name="password">
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col-md-12">
+                                                <label class="text-white" for="password-check">Confirm Password</label>
+                                                <input type="password" id="password-check" class="form-control" name="password_check">
+                                            </div>
+                                        </div>
 
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-
-                                        <div class="row form-group">
-
-                                            <div class="col-md-12">
-                                                <label class="text-white" for="email">Email</label>
-                                                <input type="text" id="email" class="form-control" placeholder="email" name="username">
+                                        <div class="row form-group mt-5">
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3">
+                                                <button type="button" class="btn btn-primary btn-block text-white" id="sendInfo">submit</button>
                                             </div>
                                         </div>
-
-                                        <div class="row form-group">
-
-                                            <div class="col-md-12">
-                                                <label class="text-white" for="subject">Password</label>
-                                                <input type="password" id="subject" class="form-control" placeholder="password" name="password">
-                                            </div>
-                                        </div>
-
-
-
-
-                                        <div class="row form-group mt-5 justify-content-start">
-                                            <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
-                                                <input type="submit" value="Send Message" class="btn btn-primary btn-block text-white">
-                                            </div>
-                                        </div>
-
 
                                     </form>
                                 </div>
 
                             </div>
-
-
-
-
-
-
-                            <script>
-
-                                $(document).ready(() => {
-
-                                    $("#click_signup").on("click", () => {
-
-                                        var formData = new FormData();
-
-                                        var account
-
-
-
-                                        $.ajax({
-                                           type : post,
-
-
-                                        });
-
-
-
-                                    });
-
-                                });
-
-
-                            </script>
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
                     </div>
                 </div>
+
+                <script>
+
+                    $(document).ready(() => {
+
+
+
+                        $("#sendInfo").on("click", () => {
+
+                            var token = $("meta[name='_csrf']").attr("content");
+                            var header = $("meta[name='_csrf_header']").attr("content");
+
+                            var formData = new FormData();
+
+                            var email = $("input[name='email']");
+                            var password = $("input[name='password']");
+                            var password_check = $("input[name='password_check']");
+
+                            formData.append("email",email);
+                            formData.append("password",password);
+                            formData.append("password_check",password_check);
+
+
+                            $.ajax({
+                                url : '/register',
+                                data : formData,
+                                processData : false,
+                                contentType : false,
+
+                                beforeSend : function(xhr)
+                                {
+                                    xhr.setRequestHeader(header, token);
+                                },
+
+                                type : 'post',
+
+                                success : (result) => {
+                                    alert(result);
+                                    //JSON.stringify(result)
+                                }
+
+
+                            }).fail((err) => {
+                                alert('faild');
+                            });
+
+                        });
+
+                    });
+
+
+                </script>
+
+
+
+
 
             </div>
 
@@ -175,9 +204,8 @@
 
 </div> <!-- .site-wrap -->
 
-<script src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
+
 <script src="${pageContext.request.contextPath}/static/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/static/js/jquery-ui.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/popper.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/owl.carousel.min.js"></script>
