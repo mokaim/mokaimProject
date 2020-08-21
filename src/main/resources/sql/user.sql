@@ -233,6 +233,38 @@ END
 GO
 
 
+
+CREATE TRIGGER comments_trigger
+	ON usr AFTER DELETE
+	AS
+	BEGIN
+		DECLARE @usr_email varchar(128)
+
+		SELECT @usr_email= _usr_email FROM deleted
+
+		DELETE FROM comments WHERE _usr_email = @usr_email
+END
+GO
+
+
+
+CREATE TRIGGER reply_trigger
+	ON usr AFTER DELETE
+	AS
+	BEGIN
+		DECLARE @usr_email varchar(128)
+
+		SELECT @usr_email= _usr_email FROM deleted
+
+		DELETE FROM reply WHERE _usr_email = @usr_email
+END
+GO
+
+
+
+
+
+
 https://lefigaro.tistory.com/7
 
 MSSQL TransactSQL 을 이용한 DML DELETE 트리거 설정

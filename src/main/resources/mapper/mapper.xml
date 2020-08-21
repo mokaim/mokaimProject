@@ -18,9 +18,7 @@ SELECT post._post_num,
 	   img._img_num,
 	   img._img_name,
 	   img._img_location,
-	   img._img_source FROM post post RIGHT JOIN img img ON post._post_num = img._img_source WHERE post._post_num = #{_post_num}
-
-
+	   img._img_source FROM post post RIGHT JOIN img img ON post._post_num = img._img_source WHERE post._post_num = #{_post_num} ORDER BY img._img_num DESC
 
 	</select>
 
@@ -32,7 +30,8 @@ SELECT post._post_num,
 			   post._post_datetime,
 			   img._img_num,
 			   img._img_name,
-			   img._img_location FROM post post FULL OUTER JOIN img img ON post._post_num = img._img_source ORDER BY post._post_num DESC;
+			   img._img_location FROM post post FULL OUTER JOIN img img ON post._post_num = img._img_source ORDER BY post._post_num DESC, img._img_num DESC
+
     </select>
 
 
@@ -95,7 +94,7 @@ SELECT post._post_num,
     <insert id="insert_Post" parameterType="io.github.mokaim.domain.PostDTO">
 		DECLARE @_post_datetime DATETIME
 		SELECT @_post_datetime = getdate()
-		INSERT INTO post VALUES(NEXT VALUE FOR post_seq, #{_post_title}, #{_post_content},'test', @_post_datetime)
+		INSERT INTO post VALUES(NEXT VALUE FOR post_seq, #{_post_title}, #{_post_content},#{_post_usr}, @_post_datetime)
 	</insert>
 
 	<insert id="insert_Img" parameterType="io.github.mokaim.domain.ImageDTO">

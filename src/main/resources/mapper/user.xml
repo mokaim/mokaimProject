@@ -11,7 +11,7 @@
       select u._usr_email,
 	        u._usr_pw,
 	        r.role_name
-	        from usr u inner join usr_role r on u._usr_email = r._usr_email where u._usr_email = 'mokaim@naver.com'
+	        from usr u inner join usr_role r on u._usr_email = r._usr_email where u._usr_email = #{email}
 
     </select>
 
@@ -32,11 +32,11 @@
     </insert>
 
     <insert id="insert_UserInfo" parameterType="io.github.mokaim.domain.UserDTO">
-        INSERT INTO usr VALUES(3,#{email}, #{password})
+        INSERT INTO usr VALUES(NEXT VALUE FOR usr_seq,#{email}, #{password})
     </insert>
 
     <insert id="insert_UserRole" parameterType="io.github.mokaim.domain.UserDTO">
-        INSERT INTO usr_role VALUES(3,#{role})
+        INSERT INTO usr_role VALUES(#{email},#{role})
     </insert>
 
 

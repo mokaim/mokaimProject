@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
 import java.util.List;
 
 @Slf4j
@@ -31,19 +32,24 @@ public class WriteActionController {
     @PostMapping("/mymy")
     public String from_ajax_to_AzureStorage(@RequestParam("title") String title,
                                             @RequestParam("content") String content ,
+                                            Principal principal,
                                             MultipartFile[] uploadFile) {
+
+        String username = principal.getName();
 
         log.info("update ajax post-=======================");
 
         log.info("subject : " + title);
         log.info("story : " + content);
         log.info("image Name : " +  uploadFile[0].getOriginalFilename());
+        log.info("현재 글을 작성한 유저 이름 : " + username);
 
         PostDTO postDTO = new PostDTO();
 
 
         postDTO.set_post_title(title);
         postDTO.set_post_content(content);
+        postDTO.set_post_usr(username);
 
 
         boolean validate = false;

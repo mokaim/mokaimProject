@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf()
-                .ignoringAntMatchers("/mymy")
+                //.ignoringAntMatchers("/mymy")
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 
                 .and()

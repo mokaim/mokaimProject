@@ -36,7 +36,7 @@ public class ViewServiceImpl implements ViewService{
         List<ViewInfoDTO> resultList = new ArrayList<ViewInfoDTO>();
 
         int before_postNumber = 0;
-        int current_postNumber = 0;
+        int current_postNumber;
 
         for(ViewInfoDTO viewInfoDTO : list){
 

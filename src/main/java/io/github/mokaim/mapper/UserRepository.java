@@ -16,4 +16,8 @@ public interface UserRepository {
     public void insertTest(TestUser testUser);
 
     public void insert_UserInfo(UserDTO userDTO);
+
+    public void insert_UserRole(UserDTO userDTO);
+
+
 }

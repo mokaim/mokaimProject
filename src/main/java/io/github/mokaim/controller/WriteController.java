@@ -29,6 +29,11 @@ public class WriteController {
 	@GetMapping("/post")
 	public ModelAndView write(Principal principal, ModelAndView modelAndView) {
 
+		String username = principal.getName();
+
+		log.info("현재 로그인한 유저 이름 : " + username);
+
+
 		modelAndView.addObject("userName", principal.getName());
 		modelAndView.setViewName("write");
 

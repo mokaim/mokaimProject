@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,6 +29,11 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 
     <script src="${pageContext.request.contextPath}/static/js/imagePreview.js"></script>
+
+
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
 
   </head>
   <body>
@@ -97,7 +104,6 @@
 
 
                     <!-- 템플릿 출저 : https://bootsnipp.com/snippets/2eNKz -->
-
 
                     <div class="row justify-content-center mb-5">
                       <div class="col-md-12">
@@ -189,8 +195,9 @@
         	
           $("#toUpload").on("click", function(){
             var formData = new FormData();
-            
-            
+
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
             var inputFile = $("input[name='uploadFile']");
             var subject = $("input[name='subject']").val();
             var story = $("textarea[name='story']").val();
@@ -222,6 +229,10 @@
               processData : false,
               contentType : false,
               data : formData,
+              beforeSend : function(xhr)
+              {
+                xhr.setRequestHeader(header, token);
+              },
               type : 'post',
               success : function(result){
                 alert("업로드 완료!!");
