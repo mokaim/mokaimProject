@@ -54,8 +54,6 @@
     <div class="main-menu">
       <ul class="js-clone-nav">
         <li class="active"><a href="/">Home</a></li>
-        <li><a href="/main">Main</a></li>
-        <li><a href="/write">Write</a></li>
       </ul>
       <ul class="social js-clone-nav">
         <li><a href="#"><span class="icon-facebook"></span></a></li>
@@ -70,8 +68,6 @@
 
 
         <c:forEach var="testImageDTO" items="${list}">
-        	
-
 
 		 <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
           <a href="/view/${testImageDTO._post_num}" class="d-block photo-item">
@@ -84,10 +80,7 @@
             </div>
           </a>
         </div>
-        
-        
 
-        
         </c:forEach>
         
         
