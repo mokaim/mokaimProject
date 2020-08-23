@@ -34,10 +34,13 @@ public class CustomUserDetails implements UserDetails {
         roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 
 
-    출처: https://debugdaldal.tistory.com/89 [달달한 디버깅]*/
+        출처: https://debugdaldal.tistory.com/89 [달달한 디버깅]*/
+
 
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
+        roles.stream().map(o -> "ROLE_" + o).forEach(o -> authorities.add(new SimpleGrantedAuthority(o)));
+
+        //authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
         return authorities;
 
 

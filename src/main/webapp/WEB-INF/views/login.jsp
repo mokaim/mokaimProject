@@ -75,7 +75,7 @@
 
 
 
-                                    <form action="/loginpro" method="post">
+                                    <form action="/yim" method="post">
 
 
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

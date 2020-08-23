@@ -77,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
                 .formLogin() //로그인
                 .loginPage("/newlogin")
-                .loginProcessingUrl("/loginpro")
+                .loginProcessingUrl("/yim")
                 .defaultSuccessUrl("/")
                 .permitAll()
                 .and()
