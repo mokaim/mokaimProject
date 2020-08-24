@@ -10,6 +10,8 @@
     <title>Shutter &mdash; Colorlib Website Template</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="_csrf" content="${_csrf.token}"/>
+      <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fonts/icomoon/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
@@ -24,6 +26,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/comments.css">
+
 
       <script src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
     
@@ -175,9 +178,16 @@
 
             function send() {
 
+                var token = $("meta[name='_csrf']").attr("content");
+                var header = $("meta[name='_csrf_header']").attr("content");
+
                 $.ajax({
                     type: 'POST',
                     url: '/view/${view._post_num}',
+                    beforeSend : function(xhr)
+                    {
+                        xhr.setRequestHeader(header, token);
+                    },
                     data: $("#commentsForm").serialize(),
 
                     success: function (data) {
