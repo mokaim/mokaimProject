@@ -144,16 +144,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
             <div class="row mt-5 justify-content-center">
                 <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
                     <div class="row justify-content-start">
@@ -251,16 +241,14 @@
                                     "<img class='rounded-circle' src='http://nicesnippets.com/demo/man02.png'>" +
                                     "</div>" +
                                     "<div class='col-8 reply text-white'>" +
-                                    "<h4 class='d-inline-flex p-2'>test</h4>" +
-                                    "<time class=''>" + "</time>" +
-                                    "<p>" + 'test'  + "</p>"
+                                    "<h4 class='d-inline-flex p-2'>" + data[i].reply_usr_email + "</h4>" +
+                                    "<time class=''>" + data[i].reply_date + "</time>" +
+                                    "<p>" + data[i].reply_content  + "</p>"
                                     + "</div>"
 
                                     +"</div>" +"</li>"+ "</ul>");
 
                             }
-
-
                         }
 
                         $('#target').html(html.join(''));
