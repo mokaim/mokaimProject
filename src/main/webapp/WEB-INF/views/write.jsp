@@ -225,7 +225,7 @@
             console.log(formData.get("content"));
 
             $.ajax({
-              url : '/mymy',
+              url : '/new',
               processData : false,
               contentType : false,
               data : formData,

@@ -18,7 +18,7 @@ SELECT post._post_num,
 	   img._img_num,
 	   img._img_name,
 	   img._img_location,
-	   img._img_source FROM post post RIGHT JOIN img img ON post._post_num = img._img_source WHERE post._post_num = #{_post_num} ORDER BY img._img_num DESC
+	   img._img_source FROM post post LEFT JOIN img img ON post._post_num = img._img_source WHERE post._post_num = #{_post_num} ORDER BY img._img_num DESC
 
 	</select>
 
@@ -59,6 +59,17 @@ SELECT post._post_num,
 	</select>
 
 
+	<select id="select_PostUser" parameterType="io.github.mokaim.domain.PostDTO" resultType="io.github.mokaim.domain.PostDTO">
+		select top 1 * from post where _post_num = #{_post_num} and _post_usr = #{_post_usr}
+	</select>
+
+
+
+
+	<!-- UPDATE 문-->
+	<update id="updatePost" parameterType="io.github.mokaim.domain.PostDTO">
+		UPDATE post SET _post_title = #{_post_title}, _post_content = #{_post_content} WHERE _post_num = #{_post_num}
+	</update>
 
 
 
@@ -70,12 +81,10 @@ SELECT post._post_num,
 
 
 
-
-
-
-
-
-
+	<!-- DELETE 문-->
+	<delete id="deletePostImage" parameterType="int">
+		DELETE FROM img WHERE _img_source = #{imgSource}
+	</delete>
 
 
 

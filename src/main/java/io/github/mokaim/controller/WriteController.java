@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
@@ -26,7 +30,7 @@ public class WriteController {
 	@Autowired
 	ViewServiceImpl viewService;
 	
-	@GetMapping("/post")
+	@GetMapping("/new")
 	public ModelAndView write(Principal principal, ModelAndView modelAndView) {
 
 		String username = principal.getName();
@@ -47,11 +51,41 @@ public class WriteController {
 		
 		log.info("test view bno : "  + postNumber);
 
-		List<ViewInfoDTO> list =  viewService.select_View(num);
+		List<ViewInfoDTO> list = Optional.ofNullable(viewService.select_View(num)).filter(o -> o.size() > 0)
+				.orElse(new ArrayList<>());
+
 		model.addAttribute("imgList",list);
 		model.addAttribute("view",list.get(0));
 
 		return "view";
 	}
+
+	@GetMapping(value = "/view/{postNumber}/edit")
+	public String showUpdateView(@PathVariable String postNumber, Model model, HttpServletResponse response) throws IOException {
+
+		int num = 0;
+
+		try{
+
+			num = Integer.parseInt(postNumber);
+
+
+		}catch (NumberFormatException e){
+			response.sendRedirect("/");
+		}
+
+
+		List<ViewInfoDTO> list = Optional.ofNullable(viewService.select_View(num)).filter(o -> o.size() > 0)
+				.orElse(new ArrayList<>());
+
+		model.addAttribute("imgList",list);
+		model.addAttribute("view",list.get(0));
+		model.addAttribute("postNumber", postNumber);
+
+		return "update";
+	}
+
+
+
 
 }

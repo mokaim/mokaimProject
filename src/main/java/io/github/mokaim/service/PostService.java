@@ -14,4 +14,10 @@ public interface PostService {
 
     public void insert_Comments(CommentsDTO commentsDTO);
 
+    public void updatePost(PostDTO postDTO);
+
+
+
+    public PostDTO select_PostUser(PostDTO postDTO);
+
 }

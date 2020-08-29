@@ -18,7 +18,8 @@ import java.util.List;
 
 @Slf4j
 @Controller
-public class MainController {
+public class
+MainController {
 
 	
 	@Autowired
@@ -30,13 +31,6 @@ public class MainController {
 
 		List<ViewInfoDTO> list = viewService.select_List();
 
-		for(ViewInfoDTO viewInfoDTO : list){
-			log.info("포스트 넘버 : " + viewInfoDTO.get_post_num());
-			log.info("이미지 경로 : " + viewInfoDTO.get_img_location());
-			log.info("포스트 타이틀 : " + viewInfoDTO.get_post_title());
-			log.info("포스트 내용 : " + viewInfoDTO.get_post_content());
-
-		}
 		
 		model.addAttribute("list", list);
 

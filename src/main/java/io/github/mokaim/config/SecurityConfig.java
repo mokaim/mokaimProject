@@ -69,9 +69,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .authorizeRequests()    //요청에 대한 권한을 지정할 수 있음
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/view/**").hasRole("MEMBER")
-                .antMatchers("/post**").hasRole("MEMBER")
+                .antMatchers("/new").hasRole("MEMBER")
                 .antMatchers("/").hasRole("MEMBER")    //테스트
-                .antMatchers("/login**","/mymy").permitAll()
+                .antMatchers("/login**").permitAll()
                // .antMatchers("/**").permitAll()
                 .and()
 

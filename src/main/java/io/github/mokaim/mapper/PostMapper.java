@@ -19,4 +19,12 @@ public interface PostMapper {
 	public void insert_Comments(CommentsDTO commentsDTO);
 
 
+	public void updatePost(PostDTO postDTO);
+
+
+	public void deletePostImage(int imgSource);
+
+	public PostDTO select_PostUser(PostDTO postDTO);
+
+
 }

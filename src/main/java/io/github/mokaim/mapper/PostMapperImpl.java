@@ -39,5 +39,20 @@ public class PostMapperImpl implements PostMapper {
 		sqlSession.insert(NAME_SPACE + ".insert_Comments", commentsDTO);
 	}
 
+	@Override
+	public void updatePost(PostDTO postDTO) {
+		sqlSession.update(NAME_SPACE + ".updatePost",postDTO);
+	}
+
+	@Override
+	public void deletePostImage(int imgSource) {
+		sqlSession.delete(NAME_SPACE + ".deletePostImage", imgSource);
+	}
+
+	@Override
+	public PostDTO select_PostUser(PostDTO postDTO) {
+		return sqlSession.selectOne(NAME_SPACE + ".select_PostUser", postDTO);
+	}
+
 
 }

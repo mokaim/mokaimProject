@@ -6,6 +6,7 @@ import io.github.mokaim.domain.PostDTO;
 import io.github.mokaim.mapper.PostMapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PostServiceImpl implements PostService{
@@ -27,6 +28,21 @@ public class PostServiceImpl implements PostService{
     @Override
     public void insert_Comments(CommentsDTO commentsDTO) {
         postMapper.insert_Comments(commentsDTO);
+    }
+
+    @Transactional
+    @Override
+    public void updatePost(PostDTO postDTO) {
+        postMapper.updatePost(postDTO);
+        postMapper.deletePostImage(postDTO.get_post_num());
+
+
+    }
+
+
+    @Override
+    public PostDTO select_PostUser(PostDTO postDTO) {
+        return postMapper.select_PostUser(postDTO);
     }
 
 }

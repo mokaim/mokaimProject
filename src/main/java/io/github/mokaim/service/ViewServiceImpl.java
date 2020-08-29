@@ -40,6 +40,10 @@ public class ViewServiceImpl implements ViewService{
 
         for(ViewInfoDTO viewInfoDTO : list){
 
+            if(viewInfoDTO.get_img_location() == null){
+                viewInfoDTO.set_img_location("/static/images/default.jpg");
+            }
+
             log.info("포스트 넘버 : " + viewInfoDTO.get_post_num());
             current_postNumber = viewInfoDTO.get_post_num();
             if(before_postNumber != current_postNumber){

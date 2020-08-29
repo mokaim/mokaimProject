@@ -92,10 +92,14 @@
 
                      <c:forEach var="viewInfoDTO" items="${imgList}">
 
+                        <c:if test="${viewInfoDTO._img_location != null}">
 
-                        <figure class="mb-5" data-aos="fade-up">
-                            <img src="${viewInfoDTO._img_location}" alt="Image" class="img-fluid">
-                        </figure>
+                            <figure class="mb-5" data-aos="fade-up">
+                                <img src="${viewInfoDTO._img_location}" alt="Image" class="img-fluid">
+                            </figure>
+
+                        </c:if>
+
 
                      </c:forEach>
 
@@ -117,6 +121,39 @@
                 </div>
             </div>
 
+
+
+
+            <div class="row justify-content-center mt-5">
+                <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                    <form id="commentsForm">
+                        <div class="form-group">
+                            <textarea class="form-control" name="comment" placeholder="댓글을 입력하세요"></textarea>
+                            <input type="hidden" name="_usr_email" value="admin">
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                                <button type="button" class="btn btn-dark btn-block" id="submit_btn" onclick="send()">
+                                    전송
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="row mt-5 justify-content-center">
                 <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
                     <div class="row justify-content-start">
@@ -136,23 +173,7 @@
 
 
 
-            <div class="row justify-content-center mt-5">
-                <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
-                    <form id="commentsForm">
-                        <div class="form-group">
-                            <textarea class="form-control" name="comment" placeholder="댓글을 입력하세요"></textarea>
-                            <input type="hidden" name="_usr_email" value="admin">
-                        </div>
-                        <div class="row justify-content-end">
-                            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                                <button type="button" class="btn btn-dark btn-block" id="submit_btn" onclick="send()">
-                                 		   전송
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+
 
 
         </div>
