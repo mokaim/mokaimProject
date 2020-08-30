@@ -47,7 +47,7 @@ MainController {
 
 
 
-	@GetMapping("/newlogin")
+	@GetMapping("/login")
 	public String login(){
 		return "login";
 	}

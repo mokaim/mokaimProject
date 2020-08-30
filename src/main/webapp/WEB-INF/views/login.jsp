@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -22,6 +21,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/aos.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/fancybox.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
 </head>
 <body>
@@ -49,12 +50,10 @@
             <ul class="js-clone-nav">
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/main">Main</a></li>
-                <li><a href="/write">Write</a></li>
             </ul>
             <ul class="social js-clone-nav">
-                <li><a href="#"><span class="icon-facebook"></span></a></li>
-                <li><a href="#"><span class="icon-twitter"></span></a></li>
-                <li><a href="#"><span class="icon-instagram"></span></a></li>
+                <li><a href="/register"><i class="fas fa-user-plus"></i></a></li>
+                <li><a href="/login"><i class="fas fa-sign-in-alt"></i></a></li>
             </ul>
         </div>
     </header>
@@ -75,7 +74,7 @@
 
 
 
-                                    <form action="/yim" method="post">
+                                    <form action="/login-process" method="post">
 
 
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -111,48 +110,6 @@
                                 </div>
 
                             </div>
-
-
-
-
-
-
-                            <script>
-
-                                $(document).ready(() => {
-
-                                    $("#click_signup").on("click", () => {
-
-                                        var formData = new FormData();
-
-                                        var account
-
-
-
-                                        $.ajax({
-                                           type : post,
-
-
-                                        });
-
-
-
-                                    });
-
-                                });
-
-
-                            </script>
-
-
-
-
-
-
-
-
-
-
 
 
                         </div>

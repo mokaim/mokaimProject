@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>access deni</title>
 </head>
 <body>
-    <h1>거부된 페이지 접근!!</h1>
+    <h1>access denied!!</h1>
 </body>
 </html>

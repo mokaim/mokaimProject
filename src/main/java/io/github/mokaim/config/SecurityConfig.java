@@ -76,14 +76,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .and()
 
                 .formLogin() //로그인
-                .loginPage("/newlogin")
-                .loginProcessingUrl("/yim")
+                .loginPage("/login")
+                .loginProcessingUrl("/login-process")
                 .defaultSuccessUrl("/")
                 .permitAll()
+                .failureForwardUrl("/admin")
                 .and()
 
                 .logout()  //로그아웃
-                .logoutRequestMatcher(new AntPathRequestMatcher("/newlogout"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .and()

@@ -55,12 +55,11 @@
             <ul class="js-clone-nav">
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/main">Main</a></li>
-                <li><a href="/write">Write</a></li>
             </ul>
             <ul class="social js-clone-nav">
-                <li><a href="#"><span class="icon-facebook"></span></a></li>
-                <li><a href="#"><span class="icon-twitter"></span></a></li>
-                <li><a href="#"><span class="icon-instagram"></span></a></li>
+                <li><a href="/new"><i class="fas fa-pen"></i></a></li>
+                <li><a href="/login"><i class="fas fa-sign-in-alt"></i></a></li>
+                <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
             </ul>
         </div>
     </header>
