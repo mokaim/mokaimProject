@@ -68,7 +68,7 @@
                 <li><a href="/write">Write</a></li>
             </ul>
             <ul class="social js-clone-nav">
-                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                <li><a href="javascript:void(0);" onclick="deletePost(); return false;"><span class="icon-facebook"></span></a></li>
                 <li><a href="#"><span class="icon-twitter"></span></a></li>
                 <li><a href="#"><span class="icon-instagram"></span></a></li>
             </ul>
@@ -265,6 +265,46 @@
                     }
                 })
             }
+
+
+
+
+
+            function deletePost(object){
+
+                var token = $("meta[name='_csrf']").attr("content");
+                var header = $("meta[name='_csrf_header']").attr("content");
+
+                $.ajax({
+
+                    url : '/view/${view._post_num}',
+                    type : 'delete',
+                    beforeSend : function(xhr)
+                    {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success : (result) => {
+
+                        if(result === 'success'){
+                            alert('삭제 성공');
+                            location.href = '/';
+                        }
+
+
+                    },
+                    error : (err) => {
+
+                    }
+
+
+                })
+
+            }
+
+
+
+
+
 
         </script>
 

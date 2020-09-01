@@ -54,5 +54,10 @@ public class PostMapperImpl implements PostMapper {
 		return sqlSession.selectOne(NAME_SPACE + ".select_PostUser", postDTO);
 	}
 
+	@Override
+	public void deletePost(int postNumber) {
+		sqlSession.delete(NAME_SPACE + ".deletePost", postNumber);
+	}
+
 
 }

@@ -194,4 +194,22 @@ public class WriteActionController {
 
     }
 
+    @DeleteMapping(value = "/view/{postNumber}")
+    public String deletePost(@PathVariable("postNumber") String postNumber){
+
+        try{
+            int number = Integer.parseInt(postNumber);
+            postService.deletePost(number);
+
+        }catch (NumberFormatException e){
+            return "faild";
+        }
+
+        return "success";
+    }
+
+
+
+
+
 }

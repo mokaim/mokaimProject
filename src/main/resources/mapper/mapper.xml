@@ -86,6 +86,9 @@ SELECT post._post_num,
 		DELETE FROM img WHERE _img_source = #{imgSource}
 	</delete>
 
+	<delete id="deletePost" parameterType="int">
+		DELETE FROM post WHERE _post_num = #{postNumber}
+	</delete>
 
 
 

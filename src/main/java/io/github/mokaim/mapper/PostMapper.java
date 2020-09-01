@@ -26,5 +26,7 @@ public interface PostMapper {
 
 	public PostDTO select_PostUser(PostDTO postDTO);
 
+	public void deletePost(int postNumber);
+
 
 }

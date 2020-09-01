@@ -39,6 +39,11 @@ public class PostServiceImpl implements PostService{
 
     }
 
+    @Override
+    public void deletePost(int postNumber) {
+        postMapper.deletePost(postNumber);
+    }
+
 
     @Override
     public PostDTO select_PostUser(PostDTO postDTO) {

@@ -16,7 +16,7 @@ public interface PostService {
 
     public void updatePost(PostDTO postDTO);
 
-
+    public void deletePost(int postNumber);
 
     public PostDTO select_PostUser(PostDTO postDTO);
 
