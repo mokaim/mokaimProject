@@ -74,7 +74,7 @@ public class AzureBlob {
 				long length = multipartFile.getSize();
 				blob = container.getBlockBlobReference(uuid + multipartFile.getOriginalFilename());
 				blob.getProperties().setContentType("image/jpeg");  //https://stackoverflow.com/questions/10040403/set-content-type-of-media-files-stored-on-blob 
-				//블록의 기본 옥텟설정을 바꾼다.
+				//블롭의 기본 옥텟설정을 바꾼다.
 
 
 

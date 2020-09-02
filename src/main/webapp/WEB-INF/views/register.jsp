@@ -95,21 +95,21 @@
                                         <div class="row form-group">
                                             <div class="col-md-12">
                                                 <label class="text-white" for="email">Email</label>
-                                                <input type="email" id="email" class="form-control" name="email">
+                                                <input type="email" id="email" class="form-control" name="email" placeholder="Please enter your Email, 8 characters or more">
                                             </div>
                                         </div>
 
                                         <div class="row form-group">
                                             <div class="col-md-12">
                                                 <label class="text-white" for="password">Password</label>
-                                                <input type="password" id="password" class="form-control" name="password">
+                                                <input type="password" id="password" class="form-control" name="password" placeholder="Please enter your Password, 8 characters or more">
                                             </div>
                                         </div>
 
                                         <div class="row form-group">
                                             <div class="col-md-12">
                                                 <label class="text-white" for="password-check">Confirm Password</label>
-                                                <input type="password" id="password-check" class="form-control" name="password_check">
+                                                <input type="password" id="password-check" class="form-control" name="password_check" placeholder="Please enter your PasswordCheck, 8 characters or more">
                                             </div>
                                         </div>
 
@@ -117,7 +117,7 @@
 
                                         <div class="row form-group mt-5">
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3">
-                                                <button type="button" class="btn btn-primary btn-block text-white" id="sendInfo">submit</button>
+                                                <button type="button" class="btn btn-primary btn-block text-white" id="sendInfo">SignUp</button>
                                             </div>
                                         </div>
 

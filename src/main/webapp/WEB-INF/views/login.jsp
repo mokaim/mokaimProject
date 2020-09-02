@@ -84,7 +84,7 @@
 
                                             <div class="col-md-12">
                                                 <label class="text-white" for="email">Email</label>
-                                                <input type="text" id="email" class="form-control" placeholder="email" name="username">
+                                                <input type="text" id="email" class="form-control" placeholder="Please enter your email" name="username">
                                             </div>
                                         </div>
 
@@ -92,7 +92,7 @@
 
                                             <div class="col-md-12">
                                                 <label class="text-white" for="subject">Password</label>
-                                                <input type="password" id="subject" class="form-control" placeholder="password" name="password">
+                                                <input type="password" id="subject" class="form-control" placeholder="Please enter your password" name="password">
                                             </div>
                                         </div>
 
@@ -101,7 +101,7 @@
 
                                         <div class="row form-group mt-5 justify-content-start">
                                             <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
-                                                <input type="submit" value="Send Message" class="btn btn-primary btn-block text-white">
+                                                <input type="submit" value="Login" class="btn btn-primary btn-block text-white">
                                             </div>
                                         </div>
 

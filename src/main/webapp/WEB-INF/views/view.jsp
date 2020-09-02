@@ -145,7 +145,7 @@
                     <form id="commentsForm">
                         <div class="form-group">
                             <textarea class="form-control" name="comment" placeholder="댓글을 입력하세요"></textarea>
-                            <input type="hidden" name="_usr_email" value="admin">
+                            <input type="hidden" name="_usr_email" value="${user}">
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
