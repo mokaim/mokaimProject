@@ -41,7 +41,7 @@
 
     <header class="header-bar d-flex d-lg-block align-items-center" data-aos="fade-left">
         <div class="site-logo">
-            <a href="/">Shutter</a>
+            <a href="/">MOKAIM PROJECT</a>
         </div>
 
         <div class="d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>

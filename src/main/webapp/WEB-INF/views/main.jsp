@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/fancybox.min.css">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
     <script src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
 
@@ -46,20 +47,28 @@
 
     <header class="header-bar d-flex d-lg-block align-items-center">
         <div class="site-logo">
-            <a href="/">Shutter</a>
+            <a href="/">MOKAIM PROJECT</a>
         </div>
 
         <div class="d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
         <div class="main-menu">
             <ul class="js-clone-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/main">Main</a></li>
+                <li><a href="/">Home</a></li>
+                <li class="active"><a href="/main">Main</a></li>
             </ul>
             <ul class="social js-clone-nav">
-                <li><a href="/new"><i class="fas fa-pen"></i></a></li>
-                <li><a href="/login"><i class="fas fa-sign-in-alt"></i></a></li>
-                <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+                <c:choose>
+                    <c:when test="${user != null}">
+                        <li><a href="/new"><i class="fas fa-pen"></i></a></li>
+                        <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+                    </c:when>
+
+                    <c:otherwise>
+                        <li><a href="/register"><i class="fas fa-user-plus"></i></a></li>
+                        <li><a href="/login"><i class="fas fa-sign-in-alt"></i></a></li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </header>

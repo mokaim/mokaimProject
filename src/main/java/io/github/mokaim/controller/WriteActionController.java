@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
@@ -137,7 +138,7 @@ public class WriteActionController {
         return viewService.select_CommentsAndReplyByPostNumber(postNumber);
     }
 
-    @PutMapping(value = "/view/{postNumber}/edit")
+    @PutMapping(value = "/view/{postNumber}")
     public String updatePost(@PathVariable String postNumber,
                              Principal principal,
                              @RequestParam("title") String title,
@@ -195,14 +196,30 @@ public class WriteActionController {
     }
 
     @DeleteMapping(value = "/view/{postNumber}")
-    public String deletePost(@PathVariable("postNumber") String postNumber){
+    public String deletePost(@PathVariable("postNumber") String postNumber, Principal principal) throws UserPrincipalNotFoundException {
+
+        int number = 0;
+        PostDTO postDTO = new PostDTO();
+        PostDTO result;
 
         try{
-            int number = Integer.parseInt(postNumber);
-            postService.deletePost(number);
+            number = Integer.parseInt(postNumber);
+
 
         }catch (NumberFormatException e){
-            return "faild";
+            throw new NumberFormatException();
+        }
+
+        postDTO.set_post_usr(principal.getName());
+        postDTO.set_post_num(number);
+
+        result = postService.select_PostUser(postDTO);
+
+        if(result != null){
+            postService.deletePost(number);
+        }else{
+            log.warn("삭제 실패");
+            throw new UserPrincipalNotFoundException(principal.getName());
         }
 
         return "success";

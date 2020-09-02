@@ -26,8 +26,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/comments.css">
-
-
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
       <script src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
     
   </head>
@@ -65,14 +64,31 @@
             <ul class="js-clone-nav">
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/main">Main</a></li>
-                <li><a href="/write">Write</a></li>
             </ul>
             <ul class="social js-clone-nav">
-                <li><a href="javascript:void(0);" onclick="deletePost(); return false;"><span class="icon-facebook"></span></a></li>
-                <li><a href="#"><span class="icon-twitter"></span></a></li>
-                <li><a href="#"><span class="icon-instagram"></span></a></li>
+
+                <c:choose>
+                    <c:when test="${user eq view._post_usr}">
+                        <li><a href="/view/${view._post_num}/edit"><i class="far fa-edit"></i></a></li>
+                        <li><a href="javascript:void(0);" onclick="deletePost(); return false;"><i class="fas fa-trash"></i></a></li>
+                        <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+                    </c:when>
+
+                    <c:when test="${user != null}">
+                        <li><a href="/new"><i class="fas fa-pen"></i></a></li>
+                        <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+                    </c:when>
+
+                    <c:otherwise>
+                        <li><a href="/register"><i class="fas fa-user-plus"></i></a></li>
+                        <li><a href="/login"><i class="fas fa-sign-in-alt"></i></a></li>
+                    </c:otherwise>
+
+                </c:choose>
+
             </ul>
         </div>
+
     </header>
     <main class="main-content">
         <div class="container-fluid photos">
@@ -293,7 +309,8 @@
 
                     },
                     error : (err) => {
-
+                        alert('해당 게시글의 유저정보가 올바르지 않습니다.');
+                        location.href="/";
                     }
 
 

@@ -5,6 +5,7 @@ import io.github.mokaim.auth.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -68,10 +69,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
                 .authorizeRequests()    //요청에 대한 권한을 지정할 수 있음
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/view/**").hasRole("MEMBER")
                 .antMatchers("/new").hasRole("MEMBER")
-                .antMatchers("/").hasRole("MEMBER")    //테스트
-                .antMatchers("/login**").permitAll()
+                .antMatchers(HttpMethod.POST,"/view/**").hasRole("MEMBER")
+                .antMatchers(HttpMethod.PUT,"/view/**").hasRole("MEMBER")
+                .antMatchers(HttpMethod.DELETE,"/view/**").hasRole("MEMBER")
+                .antMatchers(HttpMethod.GET,"/view/**/edit").hasRole("MEMBER")
+
+                .antMatchers(HttpMethod.GET,"/view/**").permitAll()
+                .antMatchers("/","/login**","register**").permitAll()
                // .antMatchers("/**").permitAll()
                 .and()
 
@@ -99,7 +104,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .authenticationProvider(customAuthenticationProvider);
           /*.inMemoryAuthentication()
                 .withUser("user")
-                .password(passwordEncoder().encode("1234"))   //스프링 2.0 부터는 패스워드를 인코딩 시켜야함
+                .password(passwordEncoder().encode("1234"))   //스프링부트 2.0 부터는 패스워드를 인코딩 시켜야함
                 .roles("MEMBER");*/
 
     }

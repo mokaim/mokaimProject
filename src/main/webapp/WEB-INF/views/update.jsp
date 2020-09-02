@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/fancybox.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/update.css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 
@@ -58,16 +58,15 @@
         <div class="d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
         <div class="main-menu">
+
             <ul class="js-clone-nav">
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/main">Main</a></li>
-                <li><a href="/write">Write</a></li>
             </ul>
             <ul class="social js-clone-nav">
-                <li><a href="#"><span class="icon-facebook"></span></a></li>
-                <li><a href="#"><span class="icon-twitter"></span></a></li>
-                <li><a href="#"><span class="icon-instagram"></span></a></li>
+                <li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
             </ul>
+
         </div>
     </header>
     <main class="main-content">
@@ -240,7 +239,7 @@
             console.log(formData.get("content"));
 
             $.ajax({
-                url : '/view/' + postNumber + '/edit',
+                url : '/view/' + postNumber,
                 processData : false,
                 contentType : false,
                 data : formData,

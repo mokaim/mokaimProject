@@ -34,10 +34,7 @@ public class WriteController {
 	public ModelAndView write(Principal principal, ModelAndView modelAndView) {
 
 		String username = principal.getName();
-
 		log.info("현재 로그인한 유저 이름 : " + username);
-
-
 		modelAndView.addObject("userName", principal.getName());
 		modelAndView.setViewName("write");
 
@@ -45,23 +42,35 @@ public class WriteController {
 	}
 	
 	@GetMapping("/view/{postNumber}")
-	public String showView(@PathVariable("postNumber")String postNumber,Model model) {
+	public String showView(@PathVariable("postNumber")String postNumber,Model model, Principal principal) {
 
 		int num = Integer.parseInt(postNumber);
+
+		if(principal != null){
+			model.addAttribute("user", principal.getName());
+		}
+
 		
 		log.info("test view bno : "  + postNumber);
 
 		List<ViewInfoDTO> list = Optional.ofNullable(viewService.select_View(num)).filter(o -> o.size() > 0)
 				.orElse(new ArrayList<>());
+		if(list.size() > 0){
 
-		model.addAttribute("imgList",list);
-		model.addAttribute("view",list.get(0));
+			model.addAttribute("imgList",list);
+			model.addAttribute("view",list.get(0));
 
-		return "view";
+			return "view";
+
+		}else{
+			return "redirect:/";
+		}
+
+
 	}
 
 	@GetMapping(value = "/view/{postNumber}/edit")
-	public String showUpdateView(@PathVariable String postNumber, Model model, HttpServletResponse response) throws IOException {
+	public String showUpdateView(@PathVariable String postNumber, Model model, HttpServletResponse response, Principal principal) throws IOException {
 
 		int num = 0;
 
@@ -74,15 +83,19 @@ public class WriteController {
 			response.sendRedirect("/");
 		}
 
-
 		List<ViewInfoDTO> list = Optional.ofNullable(viewService.select_View(num)).filter(o -> o.size() > 0)
 				.orElse(new ArrayList<>());
 
-		model.addAttribute("imgList",list);
-		model.addAttribute("view",list.get(0));
-		model.addAttribute("postNumber", postNumber);
+		if(principal.getName().equals(list.get(0).get_post_usr())){
+			model.addAttribute("imgList",list);
+			model.addAttribute("view",list.get(0));
+			model.addAttribute("postNumber", postNumber);
 
-		return "update";
+			return "update";
+		}
+
+		return "redirect:/";
+
 	}
 
 

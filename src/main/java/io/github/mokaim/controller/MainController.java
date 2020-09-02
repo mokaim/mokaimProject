@@ -27,9 +27,14 @@ MainController {
 
 
 	@GetMapping("/")
-	public String list(Model model) {
+	public String list(Model model, Principal principal) {
 
 		List<ViewInfoDTO> list = viewService.select_List();
+
+
+		if(principal != null){
+			model.addAttribute("user", principal.getName());
+		}
 
 		
 		model.addAttribute("list", list);
@@ -38,7 +43,11 @@ MainController {
 	}
 
 	@GetMapping("/main")
-	public String main(Model model){
+	public String main(Model model, Principal principal){
+
+		if(principal != null){
+			model.addAttribute("user", principal.getName());
+		}
 
 		model.addAttribute("list",viewService.select_List());
 

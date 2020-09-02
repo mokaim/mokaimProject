@@ -44,7 +44,6 @@ public class ViewServiceImpl implements ViewService{
                 viewInfoDTO.set_img_location("/static/images/default.jpg");
             }
 
-            log.info("포스트 넘버 : " + viewInfoDTO.get_post_num());
             current_postNumber = viewInfoDTO.get_post_num();
             if(before_postNumber != current_postNumber){
                 resultList.add(viewInfoDTO);

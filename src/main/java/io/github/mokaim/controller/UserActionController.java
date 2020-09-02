@@ -29,10 +29,14 @@ public class UserActionController {
     public UserDTO register(UserDTO userDTO){
 
 
-
+        String username = userDTO.getEmail();
         String password = userDTO.getPassword();
         String password_check = userDTO.getPassword_check();
         String realPassword = null;
+
+        if(username.length() < 8 || !username.contains("@") || password.length() < 8){
+            throw new IndexOutOfBoundsException();
+        }
 
 
         if(password.equals(password_check)){

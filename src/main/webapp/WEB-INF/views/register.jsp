@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/aos.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/fancybox.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 
@@ -57,23 +57,20 @@
 
     <header class="header-bar d-flex d-lg-block align-items-center" data-aos="fade-left">
         <div class="site-logo">
-            <a href="index.html">Shutter</a>
+            <a href="/">MOKAIM PROJECT</a>
         </div>
 
-        <div class="d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+        <div class="d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;">
+            <a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
         <div class="main-menu">
             <ul class="js-clone-nav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="photos.html">Photos</a></li>
-                <li><a href="bio.html">Bio</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li class="active"><a href="contact.html">Contact</a></li>
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/main">Main</a></li>
             </ul>
             <ul class="social js-clone-nav">
-                <li><a href="#"><span class="icon-facebook"></span></a></li>
-                <li><a href="#"><span class="icon-twitter"></span></a></li>
-                <li><a href="#"><span class="icon-instagram"></span></a></li>
+                <li><a href="/register"><i class="fas fa-user-plus"></i></a></li>
+                <li><a href="/login"><i class="fas fa-sign-in-alt"></i></a></li>
             </ul>
         </div>
     </header>
@@ -169,14 +166,15 @@
 
                                 type : 'post',
 
-                                success : (result) => {
-                                    alert(result);
+                                success : () => {
+                                    alert("회원가입에 성공하셨습니다!");
+                                    location.href='/login';
                                     //JSON.stringify(result)
                                 }
 
 
-                            }).fail((err) => {
-                                alert('faild');
+                            }).fail(() => {
+                                alert('회원가입에 실패하셨습니다. 이메일과 비밀번호를 다시 확인해주세요.');
                             });
 
                         });
