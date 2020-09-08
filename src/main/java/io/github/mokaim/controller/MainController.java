@@ -53,7 +53,7 @@ MainController {
 			model.addAttribute("user", principal.getName());
 		}
 
-		List<ViewInfoDTO> list = viewService.select_List();
+		List<ViewInfoDTO> list;
 		List<Integer> pagingList = new ArrayList<>();
 
 		////
@@ -68,7 +68,7 @@ MainController {
 		int subPostCount = 0;
 		int init_page = 0;
 
-		int pagingNumber = (postCount / 10) + 1;
+		int pagingNumber = (postCount / 5) + 1;
 
 
 		/*
@@ -111,7 +111,8 @@ MainController {
 			}
 
 
-			subPostCount = postCount - (init_page - 1) * 10;
+			subPostCount = postCount - (init_page - 1) * 5;
+			list = viewService.select_PagingList(subPostCount);
 
 		}catch (NumberFormatException e){
 			log.warn("잘못된 페이지 번호 입력");

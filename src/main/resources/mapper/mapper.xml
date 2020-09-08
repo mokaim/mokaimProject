@@ -36,6 +36,34 @@ SELECT post._post_num,
 
 
 
+	<select id="select_PagingList" resultType="io.github.mokaim.domain.ViewInfoDTO" parameterType="int">
+
+		<![CDATA[
+
+select top 5
+       post._post_num,
+       post._post_title,
+       post._post_content,
+	   post._post_usr,
+	   i._img_num,
+	   i._img_location,
+	   i._img_source
+	   from (select ROW_NUMBER() OVER(order by _post_num) as _row_num, *
+			 from post
+	   )post
+	   left join (select * from img join
+						(select max(_img_num) as sub from img group by _img_source) as s on img._img_num = s.sub)i on i._img_source = post._post_num
+						 where _row_num < #{paging} order by post._post_num desc, i._img_num desc
+
+		]]>
+	</select>
+
+	<!-- https://sadtear.tistory.com/139
+	select ROW_NUMBER() OVER(order by _post_num) as _post_title, _post_content from post order by _post_num desc -->
+
+
+
+
 
 	<select id="select_CurrentDate" resultType="string">
 		SELECT GETDATE()

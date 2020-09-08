@@ -57,6 +57,20 @@ public class ViewServiceImpl implements ViewService{
         return resultList;
     }
 
+    @Override
+    public List<ViewInfoDTO> select_PagingList(Integer paging) {
+
+        List<ViewInfoDTO> list = viewMapper.select_PagingList(paging);
+
+        for(ViewInfoDTO viewInfoDTO : list){
+            if(viewInfoDTO.get_img_location() == null){
+                viewInfoDTO.set_img_location("/static/images/default.jpg");
+            }
+        }
+
+        return list;
+    }
+
 
     @Override
     public String select_CurrentDate() {

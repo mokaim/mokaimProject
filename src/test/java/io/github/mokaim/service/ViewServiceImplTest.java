@@ -53,4 +53,19 @@ class ViewServiceImplTest {
 
         assertEquals(11, list.get(2).get_post_num());
     }
+
+
+
+    @Test
+    void select_PagingList() {
+
+        list = viewMapper.select_PagingList(10);
+
+        for (ViewInfoDTO viewInfoDTO : list) {
+            System.out.println("postTitle : " + viewInfoDTO.get_post_title());
+        }
+    }
+
+
+
 }

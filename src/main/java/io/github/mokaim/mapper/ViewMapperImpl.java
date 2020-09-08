@@ -31,6 +31,11 @@ public class ViewMapperImpl implements ViewMapper{
 
     }
 
+    @Override
+    public List<ViewInfoDTO> select_PagingList(Integer paging) {
+        return sqlSession.selectList(NAME_SPACE + ".select_PagingList", paging);
+    }
+
 
     @Override
     public String select_CurrentDate() {

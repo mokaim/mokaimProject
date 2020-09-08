@@ -13,6 +13,8 @@ public interface ViewService {
 
     public List<ViewInfoDTO> select_List();
 
+    public List<ViewInfoDTO> select_PagingList(Integer paging);
+
     public String select_CurrentDate();
 
     public List<CommentsDTO> select_CommentsByPostNumber(int _post_num);
