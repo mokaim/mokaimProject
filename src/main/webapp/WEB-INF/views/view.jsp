@@ -243,7 +243,7 @@
                                 before_comments_id = comments_id;
 
                                 html.push("<li>" + "<div class='row comments mb-3'>" + "<div class='col-1 usr-img'>");
-                                html.push("<img class='rounded-circle' src='http://nicesnippets.com/demo/man02.png'>" + "</div>" + "<div class='col-11 comment text-white'>");
+                                html.push("<img class='rounded-circle' src='https://nicesnippets.com/demo/man02.png'>" + "</div>" + "<div class='col-11 comment text-white'>");
                                 html.push("<h4 class='d-inline-flex p-2'>" + data[i]._usr_email + "</h4>" +
                                     "<time>" + data[i].reg_date + "</time>" +
                                     "<p>" + data[i].comments_content + "</p>" + "</div>" + "</div>" + "</li>");
@@ -254,7 +254,7 @@
                             if(comments_id === reply_comments_id){
                                 html.push("<ul class='p-0'>" +  "<li>" + "<div class='row comments mb-3'>" +
                                     "<div class='col-1 usr-img'>" +
-                                    "<img class='rounded-circle' src='http://nicesnippets.com/demo/man02.png'>" +
+                                    "<img class='rounded-circle' src='https://nicesnippets.com/demo/man02.png'>" +
                                     "</div>" +
                                     "<div class='col-8 reply text-white'>" +
                                     "<h4 class='d-inline-flex p-2'>" + data[i].reply_usr_email + "</h4>" +

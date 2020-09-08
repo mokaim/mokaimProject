@@ -13,9 +13,12 @@ public interface ViewMapper {
 
     public List<ViewInfoDTO> select_List();
 
+
     public String select_CurrentDate();
 
     public List<CommentsDTO> select_CommentsByPostNumber(int _post_num);
 
     public List<CommentsAndReplyDTO> select_CommentsAndReplyByPostNumber(int _post_num);
+
+
 }

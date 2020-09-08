@@ -90,9 +90,9 @@
 
                             <div class="col-md-12 mt-0" data-aos="fade-up">
                                 <div class="d-flex blog-entry align-items-start">
-                                    <div class="mr-5 img-wrap"><a href="#"><img src="${viewInfoDTO._img_location}" alt="Image" class="img-fluid"></a></div>
+                                    <div class="mr-5 img-wrap"><a href="/view/${viewInfoDTO._post_num}"><img src="${viewInfoDTO._img_location}" alt="Image" class="img-fluid"></a></div>
                                     <div>
-                                        <h2 class="mt-0 mb-2"><a href="#">${viewInfoDTO._post_title}</a></h2>
+                                        <h2 class="mt-0 mb-2"><a href="/view/${viewInfoDTO._post_num}">${viewInfoDTO._post_title}</a></h2>
                                         <div class="meta mb-3">${viewInfoDTO._post_usr} on ${viewInfoDTO._post_datetime}</div>
                                         <p>${viewInfoDTO._post_content}</p>
                                     </div>
@@ -102,15 +102,63 @@
                         </c:forEach>
 
 
+                        <c:set var="currentPage" value="${currentPage}"></c:set>
+                        <c:set var="totalPage" value="${totalPage}"></c:set>
+
 
 
                         <div class="col-12 text-center">
                             <div class="custom-pagination">
-                                <span>1</span>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <span>...</span>
-                                <a href="#">7</a>
+
+
+
+                                    <c:choose>
+                                        <c:when test="${currentPage <= 1}">
+                                            <a href="/main?page=1">&laquo;</a>
+                                        </c:when>
+
+                                        <c:otherwise>
+                                            <a href="/main?page=${currentPage - 1}">&laquo;</a>
+                                        </c:otherwise>
+
+                                    </c:choose>
+
+
+                                    <c:forEach var="paging" items="${pagingNumber}">
+
+                                        <c:choose>
+
+                                            <c:when test="${currentPage eq paging}">
+                                                <a href="/main?page=${paging}" class="activePage">${paging}</a>
+                                            </c:when>
+
+                                            <c:otherwise>
+                                                <a href="/main?page=${paging}" class="">${paging}</a>
+                                            </c:otherwise>
+
+                                        </c:choose>
+
+                                    </c:forEach>
+
+
+                                    <c:choose>
+                                        <c:when test="${currentPage >= totalPage}">
+                                            <a href="/main?page=${totalPage}">&raquo;</a>
+                                        </c:when>
+
+                                        <c:otherwise>
+                                            <a href="/main?page=${currentPage + 1}">&raquo;</a>
+                                        </c:otherwise>
+
+                                    </c:choose>
+
+
+
+
+
+
+
+
                             </div>
                         </div>
                     </div>

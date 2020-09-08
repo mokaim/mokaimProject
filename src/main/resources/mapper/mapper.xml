@@ -35,6 +35,8 @@ SELECT post._post_num,
     </select>
 
 
+
+
 	<select id="select_CurrentDate" resultType="string">
 		SELECT GETDATE()
 	</select>
